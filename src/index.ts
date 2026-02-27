@@ -47,10 +47,15 @@ program
       })
       const page = await context.newPage()
 
-      await page.goto(url, {
-        waitUntil: isLocal ? 'load' : 'networkidle',
-        timeout: isLocal ? 15000 : 30000,
-      })
+      try {
+        await page.goto(url, {
+          waitUntil: isLocal ? 'load' : 'networkidle',
+          timeout: isLocal ? 15000 : 30000,
+        })
+      } catch {
+        // networkidle timeout (site keeps open connections) — fallback to load
+        await page.goto(url, { waitUntil: 'load', timeout: 30000 })
+      }
 
       if (isLocal) await page.waitForTimeout(1000)
 
