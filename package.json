@@ -1,7 +1,7 @@
 {
   "name": "design-auditor",
   "version": "0.1.3",
-  "description": "Design system auditor for websites",
+  "description": "CLI tool that audits design system consistency of any website — typography, colors, spacing, accessibility and more",
   "type": "module",
   "bin": {
     "design-auditor": "./dist/index.js"
@@ -9,6 +9,36 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "build": "tsc && tsc-alias"
+  },
+  "keywords": [
+    "design-system",
+    "design-audit",
+    "accessibility",
+    "wcag",
+    "typography",
+    "colors",
+    "spacing",
+    "cli",
+    "playwright",
+    "ux",
+    "ui",
+    "lint"
+  ],
+  "author": {
+    "name": "Pavlo Kuzina",
+    "url": "https://github.com/PashaSchool"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/PashaSchool/design-auditor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PashaSchool/design-auditor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PashaSchool/design-auditor/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "chalk": "^5.3.0",

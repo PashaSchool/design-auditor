@@ -20,7 +20,7 @@ import { checkImages }                 from '@rules/images.rules.js'
 import { checkLinks }                  from '@rules/links.rules.js'
 import { checkBreakpoints }            from '@rules/breakpoints.rules.js'
 import { checkHeadings }               from '@rules/headings.rules.js'
-import { printReport, printScore }     from '@reporters/terminal.js'
+import { printHeader, printReport, printScore } from '@reporters/terminal.js'
 import { buildJsonReport, saveReport } from '@reporters/json.js'
 import { calculateScore }              from '@utils/score.js'
 import { ModuleReport }                from '@/types.js'
@@ -100,8 +100,10 @@ program
         { name: 'Headings',                  violations: checkHeadings(headingsData) },
       ]
 
-      printReport(reports)
-      printScore(calculateScore(reports))
+      const score = calculateScore(reports)
+      printHeader(url)
+      printReport(reports, score)
+      printScore(score)
 
       if (options.saveReport) {
         const report   = buildJsonReport(url, reports)
