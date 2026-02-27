@@ -3,4 +3,4 @@ node_modules
 .idea
 .DS_Store
 
-*.json
+design-audit-*.json
