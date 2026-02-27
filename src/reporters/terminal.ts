@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+import chalk, { ChalkInstance } from 'chalk'
 import { ModuleReport, Violation, Severity } from '@/types.js'
 import { AuditScore } from '@utils/score.js'
 
@@ -52,7 +52,7 @@ function progressBar(score: number, width = 24): string {
   return barColor('█'.repeat(filled)) + chalk.dim('░'.repeat(empty))
 }
 
-function scoreColor(score: number): chalk.Chalk {
+function scoreColor(score: number): ChalkInstance {
   if (score >= 90) return chalk.green
   if (score >= 75) return chalk.greenBright
   if (score >= 60) return chalk.yellow
