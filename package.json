@@ -1,6 +1,6 @@
 {
   "name": "design-auditor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design system auditor for websites",
   "type": "module",
   "bin": {
@@ -22,5 +22,9 @@
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },
-  "files": ["dist", "README.md", "LICENSE"]
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
 }
