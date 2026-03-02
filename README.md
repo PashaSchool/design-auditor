@@ -15,6 +15,7 @@
 [![npm version](https://img.shields.io/npm/v/design-auditor?color=6366f1&style=flat-square)](https://www.npmjs.com/package/design-auditor)
 [![license](https://img.shields.io/npm/l/design-auditor?color=6366f1&style=flat-square)](LICENSE)
 [![playwright](https://img.shields.io/badge/powered%20by-Playwright-45ba4b?style=flat-square)](https://playwright.dev)
+[![website](https://img.shields.io/badge/website-pashaschool.github.io%2Fdesign--auditor-FFE135?style=flat-square)](https://pashaschool.github.io/design-auditor/)
 
 </div>
 
