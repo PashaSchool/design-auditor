@@ -60,8 +60,8 @@ export async function extractComponents(page: Page): Promise<ComponentsData> {
       let hasFocusStyle    = false
       let hasDisabledStyle = false
 
-      try {
-        for (const sheet of sheets) {
+      for (const sheet of sheets) {
+        try {
           const rules = Array.from(sheet.cssRules || [])
           for (const rule of rules) {
             const text = rule.cssText || ''
@@ -69,9 +69,9 @@ export async function extractComponents(page: Page): Promise<ComponentsData> {
             if (text.includes(':focus'))    hasFocusStyle    = true
             if (text.includes(':disabled')) hasDisabledStyle = true
           }
+        } catch {
+          // cross-origin stylesheet (e.g. Google Fonts CDN) — skip and continue
         }
-      } catch {
-        // cross-origin stylesheets are blocked — ignore
       }
 
       return {
