@@ -27,39 +27,6 @@
       rel="stylesheet"
     />
 
-<<<<<<< Updated upstream
-  <style>
-    :root {
-      --bg:        #080808;
-      --bg-2:      #101010;
-      --bg-3:      #181818;
-      --border:    rgba(255,255,255,0.07);
-      --text:      #efefef;
-      --muted:     #888;
-      --dim:       #444;
-      --yellow:    #FFE135;
-      --yellow-bg: rgba(255,225,53,0.07);
-      --blue:      #0057FF;
-      --red:       #FF3B3B;
-      --green:     #22c55e;
-      --mono:      'JetBrains Mono', monospace;
-      --sans:      'Inter', sans-serif;
-      --display:   'Bricolage Grotesque', sans-serif;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-=======
     <style>
       :root {
         --bg: #111111;
@@ -101,7 +68,46 @@
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
       }
->>>>>>> Stashed changes
+      <style > :root {
+        --bg: #111111;
+        --bg-2: #1a1a1a;
+        --bg-3: #252525;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f0f0f0;
+        --muted: #999;
+        --dim: #555555;
+        --yellow: #ffe135;
+        --yellow-bg: rgba(255, 225, 53, 0.07);
+        --blue: #0057ff;
+        --red: #ff3b3b;
+        --green: #22c55e;
+        --mono: 'JetBrains Mono', monospace;
+        --sans: 'Inter', sans-serif;
+        --display: 'Bricolage Grotesque', sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-family: var(--sans);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
 
       /* Dot grid */
       body::before {
@@ -118,31 +124,6 @@
         z-index: 0;
       }
 
-<<<<<<< Updated upstream
-    /* ─── NAV ─────────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
-      height: 60px;
-      background: rgba(8,8,8,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--yellow);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-=======
       /* ─── NAV ─────────────────────────────────────────────────── */
       nav {
         position: fixed;
@@ -168,7 +149,31 @@
         text-decoration: none;
         letter-spacing: -0.02em;
       }
->>>>>>> Stashed changes
+      /* ─── NAV ─────────────────────────────────────────────────── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 60px;
+        background: rgba(17, 17, 17, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--yellow);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
 
       .nav-right {
         display: flex;
@@ -176,38 +181,46 @@
         gap: 12px;
       }
 
-<<<<<<< Updated upstream
-    .nav-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 4px 10px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .nav-badge:hover { border-color: rgba(255,225,53,0.25); color: var(--yellow); }
+      .nav-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .nav-badge:hover {
+        border-color: rgba(255, 225, 53, 0.25);
+        color: var(--yellow);
+      }
+      .nav-badge:focus {
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
+      }
 
-    .nav-gh {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--yellow);
-      color: #000;
-      border-radius: 7px;
-      padding: 7px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.15s;
-    }
-    .nav-gh:hover { background: #fff; transform: translateY(-1px); }
-=======
+      .nav-gh {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--yellow);
+        color: #000;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.15s;
+      }
+      .nav-gh:hover {
+        background: #fff;
+        transform: translateY(-1px);
+      }
       .nav-badge {
         display: inline-flex;
         align-items: center;
@@ -252,7 +265,10 @@
         outline: 2px solid #000;
         outline-offset: 2px;
       }
->>>>>>> Stashed changes
+      .nav-gh:focus {
+        outline: 2px solid #000;
+        outline-offset: 2px;
+      }
 
       /* ─── HERO ────────────────────────────────────────────────── */
       .hero {
@@ -276,21 +292,6 @@
         width: 510px;
       }
 
-<<<<<<< Updated upstream
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 28px;
-      padding: 5px 12px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-    }
-=======
       .hero-label {
         display: inline-flex;
         align-items: center;
@@ -304,7 +305,6 @@
         border: 1px solid var(--border);
         border-radius: 100px;
       }
->>>>>>> Stashed changes
 
       .live-dot {
         width: 6px;
@@ -323,170 +323,6 @@
         }
       }
 
-<<<<<<< Updated upstream
-    .hero-h1 {
-      font-family: var(--display);
-      font-size: clamp(42px, 5.2vw, 70px);
-      font-weight: 800;
-      line-height: 1.06;
-      letter-spacing: -0.025em;
-      margin-bottom: 24px;
-      color: var(--text);
-    }
-    .hero-h1 em { font-style: normal; color: var(--yellow); }
-
-    .hero-sub {
-      font-size: 17px;
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 500px;
-    }
-    .hero-sub strong { color: var(--text); font-weight: 500; }
-
-    /* Command box */
-    .cmd-box {
-      display: flex;
-      align-items: stretch;
-      background: var(--bg-2);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 28px;
-      max-width: 460px;
-      transition: border-color 0.2s;
-    }
-    .cmd-box:hover { border-color: rgba(255,225,53,0.2); }
-
-    .cmd-prefix {
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--dim);
-      border-right: 1px solid var(--border);
-      flex-shrink: 0;
-      user-select: none;
-    }
-
-    .cmd-text {
-      flex: 1;
-      padding: 13px 14px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--text);
-      white-space: nowrap;
-      user-select: all;
-    }
-
-    .copy-btn {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 0 14px;
-      background: none;
-      border: none;
-      border-left: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      font-family: var(--mono);
-      font-size: 11px;
-      transition: all 0.2s;
-      flex-shrink: 0;
-    }
-    .copy-btn:hover { color: var(--yellow); background: var(--yellow-bg); }
-    .copy-btn.ok { color: var(--green); }
-
-    /* Stat pills */
-    .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
-    .pill {
-      padding: 5px 12px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .pill b { color: var(--text); font-weight: 600; }
-
-    .hero-actions { display: flex; align-items: center; gap: 20px; }
-    .hero-link {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 14px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .hero-link:hover { color: var(--text); }
-
-    /* ─── TERMINAL ────────────────────────────────────────────── */
-    .terminal {
-      background: #0b0b0b;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.5),
-        0 40px 90px rgba(0,0,0,0.7),
-        0 0 80px rgba(255,225,53,0.03);
-      position: relative;
-    }
-
-    /* scanlines */
-    .terminal::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,0.04) 3px,
-        rgba(0,0,0,0.04) 4px
-      );
-      pointer-events: none;
-      border-radius: 14px;
-      z-index: 2;
-    }
-
-    .term-bar {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      padding: 11px 16px;
-      background: rgba(255,255,255,0.025);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      position: relative;
-      z-index: 1;
-    }
-    .tdot { width: 11px; height: 11px; border-radius: 50%; }
-    .tdot.r { background: #ff5f57; }
-    .tdot.y { background: #ffbd2e; }
-    .tdot.g { background: #28c840; }
-    .term-title {
-      flex: 1;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: rgba(255,255,255,0.25);
-      margin-left: -37px;
-    }
-
-    .term-body {
-      padding: 14px 16px;
-      font-family: var(--mono);
-      font-size: 11.5px;
-      line-height: 1.75;
-      height: 408px;
-      overflow-y: auto;
-      position: relative;
-      z-index: 1;
-    }
-    .term-body::-webkit-scrollbar { width: 0; }
-=======
       .hero-h1 {
         font-family: var(--display);
         font-size: clamp(42px, 5.2vw, 70px);
@@ -699,7 +535,218 @@
       .term-body::-webkit-scrollbar {
         width: 0;
       }
->>>>>>> Stashed changes
+      .hero-h1 {
+        font-family: var(--display);
+        font-size: clamp(42px, 5.2vw, 70px);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 24px;
+        color: var(--text);
+      }
+      .hero-h1 em {
+        font-style: normal;
+        color: var(--yellow);
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 40px;
+        max-width: 500px;
+      }
+      .hero-sub strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      /* Command box */
+      .cmd-box {
+        display: flex;
+        align-items: stretch;
+        background: var(--bg-2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 28px;
+        max-width: 460px;
+        transition: border-color 0.2s;
+      }
+      .cmd-box:hover {
+        border-color: rgba(255, 225, 53, 0.2);
+      }
+
+      .cmd-prefix {
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        border-right: 1px solid var(--border);
+        flex-shrink: 0;
+        user-select: none;
+      }
+
+      .cmd-text {
+        flex: 1;
+        padding: 13px 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        white-space: nowrap;
+        user-select: all;
+      }
+
+      .copy-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 14px;
+        background: none;
+        border: none;
+        border-left: 1px solid var(--border);
+        color: var(--muted);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 12px;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .copy-btn:hover {
+        color: var(--yellow);
+        background: var(--yellow-bg);
+      }
+      .copy-btn:focus {
+        outline: 2px solid var(--yellow);
+        outline-offset: -2px;
+      }
+      .copy-btn.ok {
+        color: var(--green);
+      }
+
+      /* Stat pills */
+      .pills {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+      .pill {
+        padding: 6px 12px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .pill b {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .hero-link {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .hero-link:hover {
+        color: var(--text);
+      }
+      .hero-link:focus {
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
+      }
+      .hero-link:visited {
+        color: var(--muted);
+      }
+
+      /* ─── TERMINAL ────────────────────────────────────────────── */
+      .terminal {
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.5),
+          0 40px 90px rgba(0, 0, 0, 0.7),
+          0 0 80px rgba(255, 225, 53, 0.03);
+        position: relative;
+      }
+
+      /* scanlines */
+      .terminal::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 0, 0, 0.04) 3px,
+          rgba(0, 0, 0, 0.04) 4px
+        );
+        pointer-events: none;
+        border-radius: 8px;
+        z-index: 2;
+      }
+
+      .term-bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 16px;
+        background: rgba(255, 255, 255, 0.025);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1;
+      }
+      .tdot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      .tdot.r {
+        background: #ff5f57;
+      }
+      .tdot.y {
+        background: #ffbd2e;
+      }
+      .tdot.g {
+        background: #22c55e;
+      }
+      .term-title {
+        flex: 1;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.25);
+        margin-left: -37px;
+      }
+
+      .term-body {
+        padding: 14px 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        height: 408px;
+        overflow-y: auto;
+        position: relative;
+        z-index: 1;
+      }
+      .term-body::-webkit-scrollbar {
+        width: 0;
+      }
 
       .tl {
         display: block;
@@ -751,46 +798,6 @@
         z-index: 1;
       }
 
-<<<<<<< Updated upstream
-    .sec-tag {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 14px;
-    }
-
-    .sec-h {
-      font-family: var(--display);
-      font-size: clamp(30px, 3.8vw, 48px);
-      font-weight: 800;
-      letter-spacing: -0.022em;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 14px;
-    }
-
-    .sec-sub {
-      font-size: 17px;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 56px;
-    }
-
-    /* ─── CHECKS GRID ─────────────────────────────────────────── */
-    .grid-9 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-=======
       .sec-tag {
         font-family: var(--mono);
         font-size: 12px;
@@ -829,7 +836,44 @@
         border-radius: 8px;
         overflow: hidden;
       }
->>>>>>> Stashed changes
+      .sec-tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 14px;
+      }
+
+      .sec-h {
+        font-family: var(--display);
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 800;
+        letter-spacing: -0.022em;
+        line-height: 1.25;
+        color: var(--text);
+        margin-bottom: 14px;
+      }
+
+      .sec-sub {
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.5;
+        margin-bottom: 56px;
+      }
+
+      /* ─── CHECKS GRID ─────────────────────────────────────────── */
+      .grid-9 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
 
       .gcard {
         background: var(--bg-2);
@@ -857,23 +901,6 @@
         transform: scaleX(1);
       }
 
-<<<<<<< Updated upstream
-    .gicon {
-      width: 34px;
-      height: 34px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--yellow-bg);
-      border: 1px solid rgba(255,225,53,0.12);
-      border-radius: 8px;
-      margin-bottom: 14px;
-      color: var(--yellow);
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 700;
-    }
-=======
       .gicon {
         width: 36px;
         height: 36px;
@@ -889,7 +916,21 @@
         font-size: 12px;
         font-weight: 700;
       }
->>>>>>> Stashed changes
+      .gicon {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--yellow-bg);
+        border: 1px solid rgba(255, 225, 53, 0.12);
+        border-radius: 8px;
+        margin-bottom: 14px;
+        color: var(--yellow);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+      }
 
       .gname {
         font-size: 14px;
@@ -898,32 +939,6 @@
         margin-bottom: 8px;
       }
 
-<<<<<<< Updated upstream
-    .gitems {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .gitems li {
-      font-size: 12px;
-      color: var(--dim);
-      display: flex;
-      gap: 8px;
-    }
-    .gitems li::before { content: '·'; color: #2a2a2a; flex-shrink: 0; }
-
-    /* ─── HOW IT WORKS ────────────────────────────────────────── */
-    .pipeline {
-      display: flex;
-      align-items: flex-start;
-      gap: 0;
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-=======
       .gitems {
         list-style: none;
         display: flex;
@@ -953,7 +968,35 @@
         border-radius: 8px;
         overflow: hidden;
       }
->>>>>>> Stashed changes
+      .gitems {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .gitems li {
+        font-size: 12px;
+        color: var(--dim);
+        display: flex;
+        gap: 8px;
+        line-height: 1.5;
+      }
+      .gitems li::before {
+        content: '·';
+        color: #333;
+        flex-shrink: 0;
+      }
+
+      /* ─── HOW IT WORKS ────────────────────────────────────────── */
+      .pipeline {
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
 
       .pstep {
         flex: 1;
@@ -976,29 +1019,6 @@
         padding: 2px;
       }
 
-<<<<<<< Updated upstream
-    .pnum {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--dim);
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-    .ptitle { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .pdesc { font-size: 12px; color: var(--muted); line-height: 1.55; }
-
-    .ptag {
-      display: inline-block;
-      margin-top: 10px;
-      background: var(--bg-3);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 7px;
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--dim);
-    }
-=======
       .pnum {
         font-family: var(--mono);
         font-size: 12px;
@@ -1030,7 +1050,37 @@
         font-size: 12px;
         color: var(--dim);
       }
->>>>>>> Stashed changes
+      .pnum {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .ptitle {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .pdesc {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .ptag {
+        display: inline-block;
+        margin-top: 10px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+      }
 
       /* ─── QUICK START ─────────────────────────────────────────── */
       .qs-grid {
@@ -1039,36 +1089,6 @@
         gap: 20px;
       }
 
-<<<<<<< Updated upstream
-    .codeblock {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .cb-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 16px;
-      background: rgba(255,255,255,0.018);
-      border-bottom: 1px solid var(--border);
-    }
-    .cb-title { font-family: var(--mono); font-size: 11px; color: var(--dim); }
-
-    .codeblock pre {
-      padding: 20px;
-      font-family: var(--mono);
-      font-size: 12.5px;
-      line-height: 1.9;
-      overflow-x: auto;
-    }
-    .codeblock pre::-webkit-scrollbar { height: 0; }
-    .cc { color: var(--dim); }
-    .cx { color: var(--muted); }
-    .cf { color: var(--blue); }
-    .cu { color: var(--yellow); }
-=======
       .codeblock {
         background: var(--bg-2);
         border: 1px solid var(--border);
@@ -1111,7 +1131,48 @@
       .cu {
         color: var(--yellow);
       }
->>>>>>> Stashed changes
+      .codeblock {
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .cb-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.018);
+        border-bottom: 1px solid var(--border);
+      }
+      .cb-title {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+      }
+
+      .codeblock pre {
+        padding: 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        overflow-x: auto;
+      }
+      .codeblock pre::-webkit-scrollbar {
+        height: 0;
+      }
+      .cc {
+        color: var(--dim);
+      }
+      .cx {
+        color: var(--muted);
+      }
+      .cf {
+        color: var(--blue);
+      }
+      .cu {
+        color: var(--yellow);
+      }
 
       /* ─── CTA ─────────────────────────────────────────────────── */
       .cta-wrap {
@@ -1139,38 +1200,6 @@
         flex-wrap: wrap;
       }
 
-<<<<<<< Updated upstream
-    .btn-y {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--yellow);
-      color: #000;
-      padding: 13px 26px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.15s;
-    }
-    .btn-y:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,225,53,0.2); }
-
-    .btn-g {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--muted);
-      padding: 13px 26px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      transition: all 0.15s;
-    }
-    .btn-g:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
-=======
       .btn-y {
         display: inline-flex;
         align-items: center;
@@ -1215,11 +1244,6 @@
         color: var(--text);
         border-color: rgba(255, 255, 255, 0.18);
       }
-      .btn-g:focus {
-        outline: 2px solid var(--yellow);
-        outline-offset: 2px;
-      }
->>>>>>> Stashed changes
 
       /* ─── FOOTER ──────────────────────────────────────────────── */
       footer {
@@ -1234,15 +1258,6 @@
         margin: 0 auto;
       }
 
-<<<<<<< Updated upstream
-    .foot-l { font-family: var(--mono); font-size: 12px; color: var(--dim); }
-    .foot-l a { color: var(--dim); text-decoration: none; transition: color 0.2s; }
-    .foot-l a:hover { color: var(--text); }
-
-    .foot-r { display: flex; gap: 24px; }
-    .foot-link { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
-    .foot-link:hover { color: var(--text); }
-=======
       .foot-l {
         font-family: var(--mono);
         font-size: 12px;
@@ -1277,14 +1292,6 @@
       .foot-link:hover {
         color: var(--text);
       }
-      .foot-link:focus {
-        outline: 2px solid var(--yellow);
-        outline-offset: 2px;
-      }
-      .foot-link:visited {
-        color: var(--muted);
-      }
->>>>>>> Stashed changes
 
       /* ─── RESPONSIVE ──────────────────────────────────────────── */
       @media (max-width: 1040px) {
@@ -1927,211 +1934,209 @@
     </footer>
 
     <script>
-      // ─── Copy command ───────────────────────────────────────────────────
-      function doCopy() {
-        navigator.clipboard
-          .writeText('npx design-auditor https://yoursite.com')
-          .then(() => {
-            const btn = document.getElementById('copybtn');
-            btn.classList.add('ok');
-            btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> copied!`;
-            setTimeout(() => {
-              btn.classList.remove('ok');
-              btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> copy`;
-            }, 2000);
-          });
-      }
+            // ─── Copy command ───────────────────────────────────────────────────
+            function doCopy() {
+              navigator.clipboard
+                .writeText('npx design-auditor https://yoursite.com')
+                .then(() => {
+                  const btn = document.getElementById('copybtn');
+                  btn.classList.add('ok');
+                  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> copied!`;
+                  setTimeout(() => {
+                    btn.classList.remove('ok');
+                    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> copy`;
+                  }, 2000);
+                });
+            }
 
-      // ─── Terminal animation ─────────────────────────────────────────────
-      const swatch = (hex) =>
-        `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
+            // ─── Terminal animation ─────────────────────────────────────────────
+            const swatch = (hex) =>
+              `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
+
+            const LINES = [
+              {
+                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+                d: 0,
+              },
+              {
+                h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
+                d: 80,
+              },
+              {
+                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+                d: 80,
+              },
+              { h: `&nbsp;`, d: 200 },
 
       const LINES = [
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 0,
-        },
-        {
-          h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
-          d: 80,
-        },
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 80,
-        },
+        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 0 },
+        { h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`, d: 80 },
+        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
         { h: `&nbsp;`, d: 200 },
 
-<<<<<<< Updated upstream
-const LINES = [
-  { h: `<span style="color:#2a2a2a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 0 },
-  { h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#444">pashaschool.github.io</span>`, d: 80 },
-  { h: `<span style="color:#2a2a2a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
-  { h: `&nbsp;`, d: 200 },
-
-  // TYPOGRAPHY
-  { h: `<span style="color:#3a3a3a">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#252525">───────────────────────────</span> <span style="color:#eab308">██████</span><span style="color:#1e1e1e">░░░░░░</span>   <span style="color:#eab308">50</span> <span style="color:#2a2a2a">──</span>`, d: 300 },
-  { h: `&nbsp;`, d: 60 },
-  { h: `    <span style="color:#ff5555">✖</span>  <span style="color:#cc4444">11 unique line-heights — recommendation: max 4–6</span>`, d: 80 },
-  { h: `    <span style="color:#d4864a">◆</span>  <span style="color:#a06030">10 unique font sizes — rec. 6–8</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Font families: 2 — OK</span>`, d: 80 },
-  { h: `&nbsp;`, d: 140 },
-
-  // COLORS
-  { h: `<span style="color:#3a3a3a">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#252525">─────────────────────────────</span> <span style="color:#84cc16">███████████</span><span style="color:#1e1e1e">░</span>   <span style="color:#84cc16">86</span> <span style="color:#2a2a2a">──</span>`, d: 180 },
-  { h: `&nbsp;`, d: 60 },
-  { h: `    <span style="color:#d4864a">◆</span>  <span style="color:#a06030">WCAG AA fail: <span style="background:#ffffff;color:#ff3b3b;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#ff3b3b;color:#fff;padding:0 3px;border-radius:2px">#ff3b3b</span> (3.53:1)</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Unique colors: 11 — OK</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Primary:   ${swatch('#FFE135')} <span style="color:#888">#ffe135</span>  (11 uses)</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Secondary: ${swatch('#0057FF')} <span style="color:#888">#0057ff</span>  (9 uses)</span>`, d: 80 },
-  { h: `&nbsp;`, d: 140 },
-
-  // COMPONENTS
-  { h: `<span style="color:#3a3a3a">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#252525">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#2a2a2a">──</span>`, d: 180 },
-  { h: `&nbsp;`, d: 60 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Touch targets: all buttons ≥ 44px</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Interactive states: :hover and :focus present</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Border-radius: 3 unique values — OK</span>`, d: 80 },
-  { h: `&nbsp;`, d: 140 },
-
-  // HEADINGS
-  { h: `<span style="color:#3a3a3a">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#252525">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#2a2a2a">──</span>`, d: 180 },
-  { h: `&nbsp;`, d: 60 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">H1: one on page — "Pavlo Kuzina"</span>`, d: 80 },
-  { h: `    <span style="color:#50fa7b">✔</span>  <span style="color:#444">Heading hierarchy has no skipped levels</span>`, d: 80 },
-  { h: `&nbsp;`, d: 200 },
-
-  // SUMMARY
-  { h: `<span style="color:#2a2a2a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 100 },
-  { h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#84cc16">79</b><span style="color:#333">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#84cc16">B</b>  <span style="color:#333">·</span>  <span style="color:#84cc16">Good</span>`, d: 80 },
-  { h: `<span style="color:#2a2a2a">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
-]
-=======
         // TYPOGRAPHY
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
-          d: 300,
-        },
+        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`, d: 300 },
         { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
-          d: 80,
-        },
+        { h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`, d: 80 },
+        { h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`, d: 80 },
         { h: `&nbsp;`, d: 140 },
 
         // COLORS
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
+        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`, d: 180 },
         { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
-          d: 80,
-        },
+        { h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`, d: 80 },
         { h: `&nbsp;`, d: 140 },
 
         // COMPONENTS
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
+        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`, d: 180 },
         { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
-          d: 80,
-        },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`, d: 80 },
         { h: `&nbsp;`, d: 140 },
 
         // HEADINGS
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
+        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`, d: 180 },
         { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
-          d: 80,
-        },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`, d: 80 },
+        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`, d: 80 },
         { h: `&nbsp;`, d: 200 },
 
         // SUMMARY
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 100,
-        },
-        {
-          h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`,
-          d: 80,
-        },
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 80,
-        },
-      ];
+        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 100 },
+        { h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`, d: 80 },
+        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
+      ]
+              // TYPOGRAPHY
+              {
+                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
+                d: 300,
+              },
+              { h: `&nbsp;`, d: 60 },
+              {
+                h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
+                d: 80,
+              },
+              { h: `&nbsp;`, d: 140 },
 
-      function runTerminal() {
-        const el = document.getElementById('tout');
-        el.innerHTML = '';
-        let t = 600;
->>>>>>> Stashed changes
+              // COLORS
+              {
+                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
+                d: 180,
+              },
+              { h: `&nbsp;`, d: 60 },
+              {
+                h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
+                d: 80,
+              },
+              { h: `&nbsp;`, d: 140 },
 
-        LINES.forEach((line) => {
-          t += line.d;
-          setTimeout(() => {
-            const row = document.createElement('div');
-            row.className = 'tl';
-            row.innerHTML = line.h;
-            el.appendChild(row);
-            el.scrollTop = el.scrollHeight;
-          }, t);
-        });
+              // COMPONENTS
+              {
+                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+                d: 180,
+              },
+              { h: `&nbsp;`, d: 60 },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
+                d: 80,
+              },
+              { h: `&nbsp;`, d: 140 },
 
-        // cursor
-        t += 200;
-        setTimeout(() => {
-          const cur = document.createElement('div');
-          cur.className = 'tl';
-          cur.innerHTML = `  <span class="cursor"></span>`;
-          el.appendChild(cur);
-        }, t);
+              // HEADINGS
+              {
+                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+                d: 180,
+              },
+              { h: `&nbsp;`, d: 60 },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
+                d: 80,
+              },
+              {
+                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
+                d: 80,
+              },
+              { h: `&nbsp;`, d: 200 },
 
-        // loop
-        setTimeout(runTerminal, t + 3800);
-      }
+              // SUMMARY
+              {
+                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+                d: 100,
+              },
+              {
+                h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`,
+                d: 80,
+              },
+              {
+                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+                d: 80,
+              },
+            ];
 
-      runTerminal();
+            function runTerminal() {
+              const el = document.getElementById('tout');
+              el.innerHTML = '';
+              let t = 600;
+      >>>>>>> Stashed changes
+
+              LINES.forEach((line) => {
+                t += line.d;
+                setTimeout(() => {
+                  const row = document.createElement('div');
+                  row.className = 'tl';
+                  row.innerHTML = line.h;
+                  el.appendChild(row);
+                  el.scrollTop = el.scrollHeight;
+                }, t);
+              });
+
+              // cursor
+              t += 200;
+              setTimeout(() => {
+                const cur = document.createElement('div');
+                cur.className = 'tl';
+                cur.innerHTML = `  <span class="cursor"></span>`;
+                el.appendChild(cur);
+              }, t);
+
+              // loop
+              setTimeout(runTerminal, t + 3800);
+            }
+
+            runTerminal();
     </script>
   </body>
 </html>
