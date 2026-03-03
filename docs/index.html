@@ -1935,218 +1935,190 @@
     </footer>
 
     <script>
-            // ─── Fetch npm version ──────────────────────────────────────────────
-            async function updateNpmVersion() {
-              try {
-                const response = await fetch(
-                  'https://registry.npmjs.org/design-auditor/latest'
-                );
-                const data = await response.json();
-                const version = `v${data.version}`;
-                const versionElements = document.querySelectorAll('#npm-version');
-                versionElements.forEach((el) => {
-                  el.textContent = version;
-                });
-              } catch (error) {
-                console.log('Could not fetch npm version:', error);
-              }
-            }
+      // ─── Fetch npm version ──────────────────────────────────────────────
+      async function updateNpmVersion() {
+        try {
+          const response = await fetch(
+            'https://registry.npmjs.org/design-auditor/latest'
+          );
+          const data = await response.json();
+          const version = `v${data.version}`;
+          const versionElements = document.querySelectorAll('#npm-version');
+          versionElements.forEach((el) => {
+            el.textContent = version;
+          });
+        } catch (error) {
+          console.log('Could not fetch npm version:', error);
+        }
+      }
 
-            // Fetch version when page loads
-            if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', updateNpmVersion);
-            } else {
-              updateNpmVersion();
-            }
+      // Fetch version when page loads
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateNpmVersion);
+      } else {
+        updateNpmVersion();
+      }
 
-            // ─── Copy command ───────────────────────────────────────────────────
-            function doCopy() {
-              navigator.clipboard
-                .writeText('npx design-auditor https://yoursite.com')
-                .then(() => {
-                  const btn = document.getElementById('copybtn');
-                  btn.classList.add('ok');
-                  btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> copied!`;
-                  setTimeout(() => {
-                    btn.classList.remove('ok');
-                    btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> copy`;
-                  }, 2000);
-                });
-            }
+      // ─── Copy command ───────────────────────────────────────────────────
+      function doCopy() {
+        navigator.clipboard
+          .writeText('npx design-auditor https://yoursite.com')
+          .then(() => {
+            const btn = document.getElementById('copybtn');
+            btn.classList.add('ok');
+            btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> copied!`;
+            setTimeout(() => {
+              btn.classList.remove('ok');
+              btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> copy`;
+            }, 2000);
+          });
+      }
 
-            // ─── Terminal animation ─────────────────────────────────────────────
-            const swatch = (hex) =>
-              `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
+      // ─── Terminal animation ─────────────────────────────────────────────
+      const swatch = (hex) =>
+        `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
 
-            function runTerminal() {
-              const el = document.getElementById('tout');
-              if (!el) return;
-              el.innerHTML = '';
-              let t = 600;
+      function runTerminal() {
+        const el = document.getElementById('tout');
+        if (!el) return;
+        el.innerHTML = '';
+        let t = 600;
 
-              const LINES = [
-        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 0 },
-        { h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`, d: 80 },
-        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
-        { h: `&nbsp;`, d: 200 },
+        const LINES = [
+          {
+            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+            d: 0,
+          },
+          {
+            h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
+            d: 80,
+          },
+          {
+            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+            d: 80,
+          },
+          { h: `&nbsp;`, d: 200 },
 
-        // TYPOGRAPHY
-        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`, d: 300 },
-        { h: `&nbsp;`, d: 60 },
-        { h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`, d: 80 },
-        { h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`, d: 80 },
-        { h: `&nbsp;`, d: 140 },
+          // TYPOGRAPHY
+          {
+            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
+            d: 300,
+          },
+          { h: `&nbsp;`, d: 60 },
+          {
+            h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
+            d: 80,
+          },
+          { h: `&nbsp;`, d: 140 },
 
-        // COLORS
-        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`, d: 180 },
-        { h: `&nbsp;`, d: 60 },
-        { h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`, d: 80 },
-        { h: `&nbsp;`, d: 140 },
+          // COLORS
+          {
+            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
+            d: 180,
+          },
+          { h: `&nbsp;`, d: 60 },
+          {
+            h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
+            d: 80,
+          },
+          { h: `&nbsp;`, d: 140 },
 
-        // COMPONENTS
-        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`, d: 180 },
-        { h: `&nbsp;`, d: 60 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`, d: 80 },
-        { h: `&nbsp;`, d: 140 },
+          // COMPONENTS
+          {
+            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+            d: 180,
+          },
+          { h: `&nbsp;`, d: 60 },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
+            d: 80,
+          },
+          { h: `&nbsp;`, d: 140 },
 
-        // HEADINGS
-        { h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`, d: 180 },
-        { h: `&nbsp;`, d: 60 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`, d: 80 },
-        { h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`, d: 80 },
-        { h: `&nbsp;`, d: 200 },
+          // HEADINGS
+          {
+            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+            d: 180,
+          },
+          { h: `&nbsp;`, d: 60 },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
+            d: 80,
+          },
+          {
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
+            d: 80,
+          },
+          { h: `&nbsp;`, d: 200 },
 
-        // SUMMARY
-        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 100 },
-        { h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`, d: 80 },
-        { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
-      ]
-              // TYPOGRAPHY
-              {
-                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
-                d: 300,
-              },
-              { h: `&nbsp;`, d: 60 },
-              {
-                h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
-                d: 80,
-              },
-              { h: `&nbsp;`, d: 140 },
+          // SUMMARY
+          {
+            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+            d: 100,
+          },
+          {
+            h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`,
+            d: 80,
+          },
+          {
+            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+            d: 80,
+          },
+        ];
 
-              // COLORS
-              {
-                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
-                d: 180,
-              },
-              { h: `&nbsp;`, d: 60 },
-              {
-                h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
-                d: 80,
-              },
-              { h: `&nbsp;`, d: 140 },
+        LINES.forEach((line) => {
+          t += line.d;
+          setTimeout(() => {
+            const row = document.createElement('div');
+            row.className = 'tl';
+            row.innerHTML = line.h;
+            el.appendChild(row);
+            el.scrollTop = el.scrollHeight;
+          }, t);
+        });
 
-              // COMPONENTS
-              {
-                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-                d: 180,
-              },
-              { h: `&nbsp;`, d: 60 },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
-                d: 80,
-              },
-              { h: `&nbsp;`, d: 140 },
+        // cursor
+        t += 200;
+        setTimeout(() => {
+          const cur = document.createElement('div');
+          cur.className = 'tl';
+          cur.innerHTML = `  <span class="cursor"></span>`;
+          el.appendChild(cur);
+        }, t);
 
-              // HEADINGS
-              {
-                h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-                d: 180,
-              },
-              { h: `&nbsp;`, d: 60 },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
-                d: 80,
-              },
-              {
-                h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
-                d: 80,
-              },
-              { h: `&nbsp;`, d: 200 },
+        // loop
+        setTimeout(runTerminal, t + 3800);
+      }
 
-              // SUMMARY
-              {
-                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-                d: 100,
-              },
-              {
-                h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#FFE135">B</b>  <span style="color:#555555">·</span>  <span style="color:#FFE135">Good</span>`,
-                d: 80,
-              },
-              {
-                h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-                d: 80,
-              },
-              ];
-
-              LINES.forEach((line) => {
-                t += line.d;
-                setTimeout(() => {
-                  const row = document.createElement('div');
-                  row.className = 'tl';
-                  row.innerHTML = line.h;
-                  el.appendChild(row);
-                  el.scrollTop = el.scrollHeight;
-                }, t);
-              });
-
-              // cursor
-              t += 200;
-              setTimeout(() => {
-                const cur = document.createElement('div');
-                cur.className = 'tl';
-                cur.innerHTML = `  <span class="cursor"></span>`;
-                el.appendChild(cur);
-              }, t);
-
-              // loop
-              setTimeout(runTerminal, t + 3800);
-            }
-
-            runTerminal();
+      runTerminal();
     </script>
   </body>
 </html>
