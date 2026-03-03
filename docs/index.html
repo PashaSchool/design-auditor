@@ -1374,7 +1374,7 @@
             <rect width="12" height="12" rx="2" fill="#CB3837" />
             <path d="M2 9V3h8v6H7V5H5v4H2z" fill="white" />
           </svg>
-          v0.1.6
+          <span id="npm-version">v0.1.6</span>
         </a>
         <a
           href="https://github.com/PashaSchool/design-auditor"
@@ -1397,7 +1397,8 @@
       <div class="hero-left">
         <div class="hero-label">
           <span class="live-dot"></span>
-          v0.1.6 &nbsp;·&nbsp; Open Source &nbsp;·&nbsp; MIT
+          <span id="npm-version">v0.1.6</span> &nbsp;·&nbsp; Open Source
+          &nbsp;·&nbsp; MIT
         </div>
 
         <h1 class="hero-h1">
@@ -1934,6 +1935,30 @@
     </footer>
 
     <script>
+            // ─── Fetch npm version ──────────────────────────────────────────────
+            async function updateNpmVersion() {
+              try {
+                const response = await fetch(
+                  'https://registry.npmjs.org/design-auditor/latest'
+                );
+                const data = await response.json();
+                const version = `v${data.version}`;
+                const versionElements = document.querySelectorAll('#npm-version');
+                versionElements.forEach((el) => {
+                  el.textContent = version;
+                });
+              } catch (error) {
+                console.log('Could not fetch npm version:', error);
+              }
+            }
+
+            // Fetch version when page loads
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', updateNpmVersion);
+            } else {
+              updateNpmVersion();
+            }
+
             // ─── Copy command ───────────────────────────────────────────────────
             function doCopy() {
               navigator.clipboard
