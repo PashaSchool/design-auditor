@@ -11,10 +11,10 @@
     "baseUrl": ".",
     "paths": {
       "@extractors/*": ["src/extractors/*"],
-      "@rules/*":      ["src/rules/*"],
-      "@reporters/*":  ["src/reporters/*"],
-      "@utils/*":      ["src/utils/*"],
-      "@/*":           ["src/*"]
+      "@rules/*": ["src/rules/*"],
+      "@reporters/*": ["src/reporters/*"],
+      "@utils/*": ["src/utils/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*"],
