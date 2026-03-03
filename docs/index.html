@@ -1953,7 +1953,13 @@
             const swatch = (hex) =>
               `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
 
-            const LINES = [
+            function runTerminal() {
+              const el = document.getElementById('tout');
+              if (!el) return;
+              el.innerHTML = '';
+              let t = 600;
+
+              const LINES = [
         { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 0 },
         { h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`, d: 80 },
         { h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`, d: 80 },
@@ -2089,12 +2095,7 @@
                 h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
                 d: 80,
               },
-            ];
-
-            function runTerminal() {
-              const el = document.getElementById('tout');
-              el.innerHTML = '';
-              let t = 600;
+              ];
 
               LINES.forEach((line) => {
                 t += line.d;
