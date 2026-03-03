@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc && tsc-alias"
+    "build": "tsc && tsc-alias",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [
     "design-system",
@@ -48,6 +50,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "prettier": "^3.8.1",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"

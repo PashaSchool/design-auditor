@@ -14,9 +14,18 @@
 
 [![npm version](https://img.shields.io/npm/v/design-auditor?color=6366f1&style=flat-square)](https://www.npmjs.com/package/design-auditor)
 [![license](https://img.shields.io/npm/l/design-auditor?color=6366f1&style=flat-square)](LICENSE)
+[![snyk](https://snyk.io/test/github/PashaSchool/design-auditor/badge.svg)](https://snyk.io/test/github/PashaSchool/design-auditor)
 [![playwright](https://img.shields.io/badge/powered%20by-Playwright-45ba4b?style=flat-square)](https://playwright.dev)
 
 </div>
+
+---
+
+## Security
+
+[![snyk](https://snyk.io/test/github/PashaSchool/design-auditor/badge.svg)](https://snyk.io/test/github/PashaSchool/design-auditor)
+
+All dependencies are continuously scanned for vulnerabilities using **Snyk**. Click the badge to see detailed security reports. Security is a first-class concern, not an afterthought.
 
 ---
 
@@ -26,10 +35,10 @@
 
 It answers questions like:
 
-- *"How many fonts are we actually using on this page?"*
-- *"Are all these shades of blue really necessary, or can we unify them?"*
-- *"Does our spacing follow a consistent 8px grid?"*
-- *"Which buttons are too small to tap on mobile?"*
+- _"How many fonts are we actually using on this page?"_
+- _"Are all these shades of blue really necessary, or can we unify them?"_
+- _"Does our spacing follow a consistent 8px grid?"_
+- _"Which buttons are too small to tap on mobile?"_
 
 Think of it as **Lighthouse for design consistency** — not performance, not SEO, but the visual coherence of your product.
 
@@ -53,15 +62,17 @@ npx design-auditor http://localhost:3000
 ## What it checks
 
 ### Typography
-> *Good type is invisible. Bad type is everywhere.*
 
-- Number of font families in use *(recommended: ≤ 3)*
+> _Good type is invisible. Bad type is everywhere._
+
+- Number of font families in use _(recommended: ≤ 3)_
 - Unique font sizes and whether they follow a modular scale
 - Line-height consistency across text elements
 - Outlier sizes that break the visual rhythm
 
 ### Vertical Rhythm & Spacing
-> *The baseline grid is the heartbeat of a layout.*
+
+> _The baseline grid is the heartbeat of a layout._
 
 - Detects your site's rhythm unit `(font-size × line-height)`
 - Checks if line-heights are multiples of the rhythm unit
@@ -69,7 +80,8 @@ npx design-auditor http://localhost:3000
 - Flags margin/padding outliers like `13px`, `17px`, `22px`
 
 ### Colors
-> *A brand is not a logo. It's a consistent palette.*
+
+> _A brand is not a logo. It's a consistent palette._
 
 - Counts unique colors across the entire page
 - Clusters **visually similar shades** using delta-E color science
@@ -78,12 +90,13 @@ npx design-auditor http://localhost:3000
 - Checks **CSS variable coverage** — are colors tokenized or hardcoded?
 
 ### Components
-> *Inconsistent buttons are a symptom of an inconsistent system.*
 
-- Touch target sizes *(minimum 44×44px per WCAG 2.5.5)*
-- Button padding variations *(recommended: ≤ 3 sizes — sm/md/lg)*
+> _Inconsistent buttons are a symptom of an inconsistent system._
+
+- Touch target sizes _(minimum 44×44px per WCAG 2.5.5)_
+- Button padding variations _(recommended: ≤ 3 sizes — sm/md/lg)_
 - Presence of `:hover` and `:focus` interactive states
-- Border-radius system *(recommended: ≤ 5 values)*
+- Border-radius system _(recommended: ≤ 5 values)_
 - Box-shadow elevation levels and light direction consistency
 - Z-index organization and "magic numbers"
 
@@ -224,7 +237,7 @@ This tool is built around one idea:
 
 > **A design system is a set of constraints. Audit tools should enforce them.**
 
-Most automated tools check if your site *works* (Lighthouse) or if it *renders* (Playwright visual regression). `design-auditor` checks if your site is *consistent* — the thing that's hardest to maintain as teams grow.
+Most automated tools check if your site _works_ (Lighthouse) or if it _renders_ (Playwright visual regression). `design-auditor` checks if your site is _consistent_ — the thing that's hardest to maintain as teams grow.
 
 The checks in this tool are based on:
 
