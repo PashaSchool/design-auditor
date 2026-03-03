@@ -1979,12 +1979,6 @@
             `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
 
           const lines = [
-        const el = document.getElementById('tout');
-        if (!el) return;
-        el.innerHTML = '';
-        let t = 600;
-
-        const LINES = [
           {
             h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
             d: 0,
@@ -2030,11 +2024,11 @@
             d: 80,
           },
           {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${swatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${createColorSwatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
             d: 80,
           },
           {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${swatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
+            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${createColorSwatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
             d: 80,
           },
           { h: `&nbsp;`, d: 140 },
