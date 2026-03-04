@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#111111" rx="4"/>
+
+  <!-- Checkmark symbol representing design audit/validation -->
+  <path d="M 7 16 L 13 22 L 25 10" stroke="#ffe135" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
