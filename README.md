@@ -45,6 +45,12 @@ Think of it as **Lighthouse for design consistency** — not performance, not SE
 
 ---
 
+## See it in action
+
+![Design Auditor Preview](design-audit-preview.gif)
+
+---
+
 ## Quick Start
 
 ```bash
