@@ -3,6 +3,7 @@
 ## [1.0.1] - 2026-03-06
 
 ### Fixed
+
 - Links rule: duplicate `:visited` condition
 - Colors extractor: CSS variable coverage now scans `CSSStyleRule.style.getPropertyValue()` across all stylesheets
 - Typography rules: added `pass` violation for modular scale check
@@ -11,6 +12,7 @@
 - Breakpoints extractor: use `matchAll()` to capture both values in complex queries
 
 ### Added
+
 - Test suite with Vitest (unit + rule tests)
 - CI workflow (build, format, test on Node 18/20/22)
 - CONTRIBUTING.md
@@ -18,6 +20,7 @@
 ## [1.0.0] - 2026-02-27
 
 ### Added
+
 - Initial release
 - 9 audit modules: typography, colors, vertical rhythm, components, reading width, images, links, breakpoints, headings
 - Terminal reporter with color swatches

@@ -1,6 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { checkColors } from '@rules/colors.rules.js';
-import { rgbToLab, type RGB, type ColorEntry, type ColorCluster } from '@utils/color.js';
+import {
+  rgbToLab,
+  type RGB,
+  type ColorEntry,
+  type ColorCluster,
+} from '@utils/color.js';
 import type { ColorsData } from '@extractors/colors.js';
 
 function makeEntry(r: number, g: number, b: number, count = 1): ColorEntry {
@@ -37,9 +42,7 @@ function makeData(overrides: Partial<ColorsData> = {}): ColorsData {
 describe('checkColors', () => {
   describe('unique color count', () => {
     it('passes with <= 15 colors', () => {
-      const all = Array.from({ length: 10 }, (_, i) =>
-        makeEntry(i * 25, 0, 0)
-      );
+      const all = Array.from({ length: 10 }, (_, i) => makeEntry(i * 25, 0, 0));
       const v = checkColors(makeData({ all }));
       expect(v).toContainEqual(
         expect.objectContaining({ id: 'colors-count-ok', severity: 'pass' })

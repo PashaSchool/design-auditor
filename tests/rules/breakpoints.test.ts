@@ -7,7 +7,12 @@ function makeData(overrides: Partial<BreakpointsData> = {}): BreakpointsData {
     breakpoints: [
       { value: 640, query: '(min-width: 640px)', type: 'min-width', count: 5 },
       { value: 768, query: '(min-width: 768px)', type: 'min-width', count: 8 },
-      { value: 1024, query: '(min-width: 1024px)', type: 'min-width', count: 3 },
+      {
+        value: 1024,
+        query: '(min-width: 1024px)',
+        type: 'min-width',
+        count: 3,
+      },
     ],
     uniqueValues: [640, 768, 1024],
     strategy: 'mobile-first',

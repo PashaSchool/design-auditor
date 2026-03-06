@@ -72,9 +72,7 @@ describe('parseRGB', () => {
 
 describe('normalizeColor', () => {
   it('normalizes opaque rgba to rgb', () => {
-    expect(normalizeColor('rgba(255, 255, 255, 1)')).toBe(
-      'rgb(255,255,255)'
-    );
+    expect(normalizeColor('rgba(255, 255, 255, 1)')).toBe('rgb(255,255,255)');
   });
 
   it('keeps semi-transparent as rgba', () => {

@@ -76,9 +76,7 @@ describe('checkImages', () => {
 
   describe('aspect ratios', () => {
     it('passes with <= 4 ratios', () => {
-      const v = checkImages(
-        makeData({ uniqueRatios: ['16:9', '4:3', '1:1'] })
-      );
+      const v = checkImages(makeData({ uniqueRatios: ['16:9', '4:3', '1:1'] }));
       expect(v).toContainEqual(
         expect.objectContaining({ id: 'images-ratios-ok', severity: 'pass' })
       );

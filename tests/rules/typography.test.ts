@@ -33,9 +33,30 @@ describe('checkTypography', () => {
       const v = checkTypography(
         makeData({
           fonts: [
-            { family: 'Inter', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Roboto', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Poppins', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
+            {
+              family: 'Inter',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Roboto',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Poppins',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
           ],
         })
       );
@@ -48,10 +69,38 @@ describe('checkTypography', () => {
       const v = checkTypography(
         makeData({
           fonts: [
-            { family: 'Inter', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Roboto', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Poppins', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Montserrat', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
+            {
+              family: 'Inter',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Roboto',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Poppins',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Montserrat',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
           ],
         })
       );
@@ -67,9 +116,30 @@ describe('checkTypography', () => {
       const v = checkTypography(
         makeData({
           fonts: [
-            { family: 'Inter', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'Arial', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
-            { family: 'sans-serif', sizes: [], weights: [], lineHeights: [], usedInTags: [], count: 1 },
+            {
+              family: 'Inter',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'Arial',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
+            {
+              family: 'sans-serif',
+              sizes: [],
+              weights: [],
+              lineHeights: [],
+              usedInTags: [],
+              count: 1,
+            },
           ],
         })
       );

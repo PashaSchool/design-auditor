@@ -13,11 +13,13 @@ assignees: ''
 **Actual behavior:**
 
 **Steps to reproduce:**
+
 ```bash
 npx design-auditor <url> [options]
 ```
 
 **Environment:**
+
 - Node.js version:
 - OS:
 - design-auditor version:

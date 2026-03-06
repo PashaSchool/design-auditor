@@ -1355,11 +1355,11 @@
             <rect width="12" height="12" rx="2" fill="#CB3837" />
             <path d="M2 9V3h8v6H7V5H5v4H2z" fill="white" />
           </svg>
-<<<<<<< Updated upstream
+          <<<<<<< Updated upstream
           <span id="npm-version">v0.1.6</span>
-=======
+          =======
           <span id="npm-version">v0.2.0</span>
->>>>>>> Stashed changes
+          >>>>>>> Stashed changes
         </a>
         <a
           href="https://github.com/PashaSchool/design-auditor"
@@ -1381,12 +1381,10 @@
       <div class="hero-left">
         <div class="hero-label">
           <span class="live-dot"></span>
-<<<<<<< Updated upstream
-          <span id="npm-version">v0.1.6</span> &nbsp;·&nbsp; Open Source
-=======
-          <span id="npm-version">v0.2.0</span> &nbsp;·&nbsp; Open Source
->>>>>>> Stashed changes
-          &nbsp;·&nbsp; MIT
+          <<<<<<< Updated upstream
+          <span id="npm-version">v0.1.6</span> &nbsp;·&nbsp; Open Source =======
+          <span id="npm-version">v0.2.0</span> &nbsp;·&nbsp; Open Source >>>>>>>
+          Stashed changes &nbsp;·&nbsp; MIT
         </div>
 
         <h1 class="hero-h1">
@@ -1919,7 +1917,8 @@
     <script>
       const App = (() => {
         const RESET_DELAY = 2000;
-        const NPM_REGISTRY_URL = 'https://registry.npmjs.org/design-auditor/latest';
+        const NPM_REGISTRY_URL =
+          'https://registry.npmjs.org/design-auditor/latest';
         const COPY_TEXT = 'npx design-auditor https://yoursite.com';
 
         const icons = {
@@ -1989,103 +1988,103 @@
             `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
 
           const lines = [
-          {
-            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-            d: 0,
-          },
-          {
-            h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
-            d: 80,
-          },
-          {
-            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-            d: 80,
-          },
-          { h: `&nbsp;`, d: 200 },
-          {
-            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
-            d: 300,
-          },
-          { h: `&nbsp;`, d: 60 },
-          {
-            h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
-            d: 80,
-          },
-          { h: `&nbsp;`, d: 140 },
-          {
-            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
-            d: 180,
-          },
-          { h: `&nbsp;`, d: 60 },
-          {
-            h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${createColorSwatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${createColorSwatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
-            d: 80,
-          },
-          { h: `&nbsp;`, d: 140 },
-          {
-            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-            d: 180,
-          },
-          { h: `&nbsp;`, d: 60 },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
-            d: 80,
-          },
-          { h: `&nbsp;`, d: 140 },
-          {
-            h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-            d: 180,
-          },
-          { h: `&nbsp;`, d: 60 },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
-            d: 80,
-          },
-          {
-            h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
-            d: 80,
-          },
-          { h: `&nbsp;`, d: 200 },
-          {
-            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-            d: 100,
-          },
-          {
-            h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#22c55e">B</b>  <span style="color:#555555">·</span>  <span style="color:#22c55e">Good</span>`,
-            d: 80,
-          },
-          {
-            h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-            d: 80,
-          },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 0,
+            },
+            {
+              h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
+              d: 80,
+            },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 200 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
+              d: 300,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${createColorSwatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${createColorSwatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 200 },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 100,
+            },
+            {
+              h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#22c55e">B</b>  <span style="color:#555555">·</span>  <span style="color:#22c55e">Good</span>`,
+              d: 80,
+            },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 80,
+            },
           ];
 
           const renderLine = (el, line, delay) => {

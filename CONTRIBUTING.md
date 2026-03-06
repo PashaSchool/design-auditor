@@ -65,6 +65,7 @@ Rules should always push a `pass` violation when things are OK — this affects 
 ## Reporting Bugs
 
 Open an issue with:
+
 - The URL you audited (if public)
 - Expected vs actual behavior
 - Node.js version and OS
