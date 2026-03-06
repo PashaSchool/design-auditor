@@ -1,6 +1,6 @@
 {
   "name": "design-auditor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool that audits design system consistency of any website — typography, colors, spacing, accessibility and more",
   "type": "module",
   "bin": {
