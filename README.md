@@ -283,4 +283,10 @@ MIT — use it, fork it, build on it.
 
 Built with care for designers who care about consistency.
 
+---
+
+## 📖 Read more
+
+[I built a CLI that catches design inconsistencies — like Lighthouse, but for your design system](https://dev.to/__aa5b04f75e3a/i-built-a-cli-that-catches-design-inconsistencies-like-lighthouse-but-for-your-design-system-nc7)
+
 </div>
