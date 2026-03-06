@@ -1,1950 +1,1957 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="CLI tool that audits design system consistency — typography, colors, spacing, accessibility — for any website. Like Lighthouse, but for design."
-  />
-  <meta
-    property="og:title"
-    content="design-auditor — Lighthouse for design consistency"
-  />
-  <meta
-    property="og:description"
-    content="Crawls any website with a real browser. Audits typography, colors, spacing and components against design system best practices."
-  />
-  <meta property="og:type" content="website" />
-  <title>
-    design-auditor — Catch design inconsistencies before your users do
-  </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CLI tool that audits design system consistency — typography, colors, spacing, accessibility — for any website. Like Lighthouse, but for design."
+    />
+    <meta
+      property="og:title"
+      content="design-auditor — Lighthouse for design consistency"
+    />
+    <meta
+      property="og:description"
+      content="Crawls any website with a real browser. Audits typography, colors, spacing and components against design system best practices."
+    />
+    <meta property="og:type" content="website" />
+    <title>
+      design-auditor — Catch design inconsistencies before your users do
+    </title>
 
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
+    <style>
       :root {
-          --bg: #111111;
-          --bg-2: #1a1a1a;
-          --bg-3: #252525;
-          --border: rgba(255, 255, 255, 0.07);
-          --text: #f0f0f0;
-          --muted: #999;
-          --dim: #555555;
-          --yellow: #ffe135;
-          --yellow-bg: rgba(255, 225, 53, 0.07);
-          --blue: #0057ff;
-          --red: #ff3b3b;
-          --green: #22c55e;
-          --mono: 'JetBrains Mono', monospace;
-          --sans: 'Inter', sans-serif;
-          --display: 'Bricolage Grotesque', sans-serif;
+        --bg: #111111;
+        --bg-2: #1a1a1a;
+        --bg-3: #252525;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f0f0f0;
+        --muted: #999;
+        --dim: #555555;
+        --yellow: #ffe135;
+        --yellow-bg: rgba(255, 225, 53, 0.07);
+        --blue: #0057ff;
+        --red: #ff3b3b;
+        --green: #22c55e;
+        --mono: 'JetBrains Mono', monospace;
+        --sans: 'Inter', sans-serif;
+        --display: 'Bricolage Grotesque', sans-serif;
       }
 
       *,
       *::before,
       *::after {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-family: inherit;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
       }
 
       html {
-          scroll-behavior: smooth;
-          font-family: var(--sans);
+        scroll-behavior: smooth;
+        font-family: var(--sans);
       }
 
       body {
-          background: var(--bg);
-          color: var(--text);
-          font-family: var(--sans);
-          font-size: 16px;
-          line-height: 1.5;
-          -webkit-font-smoothing: antialiased;
-          overflow-x: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
 
-      <
-      style > :root {
-          --bg: #111111;
-          --bg-2: #1a1a1a;
-          --bg-3: #252525;
-          --border: rgba(255, 255, 255, 0.07);
-          --text: #f0f0f0;
-          --muted: #999;
-          --dim: #555555;
-          --yellow: #ffe135;
-          --yellow-bg: rgba(255, 225, 53, 0.07);
-          --blue: #0057ff;
-          --red: #ff3b3b;
-          --green: #22c55e;
-          --mono: 'JetBrains Mono', monospace;
-          --sans: 'Inter', sans-serif;
-          --display: 'Bricolage Grotesque', sans-serif;
+      < style > :root {
+        --bg: #111111;
+        --bg-2: #1a1a1a;
+        --bg-3: #252525;
+        --border: rgba(255, 255, 255, 0.07);
+        --text: #f0f0f0;
+        --muted: #999;
+        --dim: #555555;
+        --yellow: #ffe135;
+        --yellow-bg: rgba(255, 225, 53, 0.07);
+        --blue: #0057ff;
+        --red: #ff3b3b;
+        --green: #22c55e;
+        --mono: 'JetBrains Mono', monospace;
+        --sans: 'Inter', sans-serif;
+        --display: 'Bricolage Grotesque', sans-serif;
       }
 
       *,
       *::before,
       *::after {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-family: inherit;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
       }
 
       html {
-          scroll-behavior: smooth;
-          font-family: var(--sans);
+        scroll-behavior: smooth;
+        font-family: var(--sans);
       }
 
       body {
-          background: var(--bg);
-          color: var(--text);
-          font-family: var(--sans);
-          font-size: 16px;
-          line-height: 1.5;
-          -webkit-font-smoothing: antialiased;
-          overflow-x: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
 
       body::before {
-          content: '';
-          position: fixed;
-          inset: 0;
-          background-image: radial-gradient(
-                  circle,
-                  rgba(255, 225, 53, 0.055) 1px,
-                  transparent 1px
-          );
-          background-size: 28px 28px;
-          pointer-events: none;
-          z-index: 0;
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 225, 53, 0.055) 1px,
+          transparent 1px
+        );
+        background-size: 28px 28px;
+        pointer-events: none;
+        z-index: 0;
       }
 
       nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 100;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 48px;
-          height: 60px;
-          background: rgba(17, 17, 17, 0.85);
-          backdrop-filter: blur(16px);
-          border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 60px;
+        background: rgba(17, 17, 17, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
       }
 
       .nav-logo {
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
-          color: var(--yellow);
-          text-decoration: none;
-          letter-spacing: -0.02em;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--yellow);
+        text-decoration: none;
+        letter-spacing: -0.02em;
       }
 
       nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 100;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 48px;
-          height: 60px;
-          background: rgba(17, 17, 17, 0.85);
-          backdrop-filter: blur(16px);
-          border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 48px;
+        height: 60px;
+        background: rgba(17, 17, 17, 0.85);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
       }
 
       .nav-logo {
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
-          color: var(--yellow);
-          text-decoration: none;
-          letter-spacing: -0.02em;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--yellow);
+        text-decoration: none;
+        letter-spacing: -0.02em;
       }
 
       .nav-right {
-          display: flex;
-          align-items: center;
-          gap: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
       }
 
       .nav-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          padding: 4px 10px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--muted);
-          text-decoration: none;
-          transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: all 0.2s;
       }
 
       .nav-badge:hover {
-          border-color: rgba(255, 225, 53, 0.25);
-          color: var(--yellow);
+        border-color: rgba(255, 225, 53, 0.25);
+        color: var(--yellow);
       }
 
       .nav-badge:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .nav-gh {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          background: var(--yellow);
-          color: #000;
-          border-radius: 8px;
-          padding: 8px 16px;
-          font-size: 12px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--yellow);
+        color: #000;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.15s;
       }
 
       .nav-gh:hover {
-          background: #fff;
-          transform: translateY(-1px);
+        background: #fff;
+        transform: translateY(-1px);
       }
 
       .nav-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          padding: 4px 10px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--muted);
-          text-decoration: none;
-          transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: all 0.2s;
       }
 
       .nav-badge:hover {
-          border-color: rgba(255, 225, 53, 0.25);
-          color: var(--yellow);
+        border-color: rgba(255, 225, 53, 0.25);
+        color: var(--yellow);
       }
 
       .nav-badge:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .nav-gh {
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          background: var(--yellow);
-          color: #000;
-          border-radius: 8px;
-          padding: 8px 16px;
-          font-size: 12px;
-          font-weight: 600;
-          text-decoration: none;
-          transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--yellow);
+        color: #000;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.15s;
       }
 
       .nav-gh:hover {
-          background: #fff;
-          transform: translateY(-1px);
+        background: #fff;
+        transform: translateY(-1px);
       }
 
       .nav-gh:focus {
-          outline: 2px solid #000;
-          outline-offset: 2px;
+        outline: 2px solid #000;
+        outline-offset: 2px;
       }
 
       .nav-gh:focus {
-          outline: 2px solid #000;
-          outline-offset: 2px;
+        outline: 2px solid #000;
+        outline-offset: 2px;
       }
 
       .hero {
-          position: relative;
-          z-index: 1;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          padding: 100px 48px 72px;
-          gap: 56px;
-          max-width: 1240px;
-          margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 48px 72px;
+        gap: 56px;
+        max-width: 1240px;
+        margin: 0 auto;
       }
 
       .hero-left {
-          flex: 1;
-          min-width: 0;
+        flex: 1;
+        min-width: 0;
       }
 
       .hero-right {
-          flex: 0 0 510px;
-          width: 510px;
+        flex: 0 0 510px;
+        width: 510px;
       }
 
       .hero-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--muted);
-          margin-bottom: 28px;
-          padding: 6px 12px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 100px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 28px;
+        padding: 6px 12px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 100px;
       }
 
       .live-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: var(--green);
-          animation: pulse-dot 2s ease infinite;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+        animation: pulse-dot 2s ease infinite;
       }
 
       @keyframes pulse-dot {
-          0%,
-          100% {
-              opacity: 1;
-          }
-          50% {
-              opacity: 0.35;
-          }
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.35;
+        }
       }
 
       .hero-h1 {
-          font-family: var(--display);
-          font-size: clamp(42px, 5.2vw, 70px);
-          font-weight: 800;
-          line-height: 1.15;
-          letter-spacing: -0.025em;
-          margin-bottom: 24px;
-          color: var(--text);
+        font-family: var(--display);
+        font-size: clamp(42px, 5.2vw, 70px);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 24px;
+        color: var(--text);
       }
 
       .hero-h1 em {
-          font-style: normal;
-          color: var(--yellow);
+        font-style: normal;
+        color: var(--yellow);
       }
 
       .hero-sub {
-          font-size: 16px;
-          color: var(--muted);
-          line-height: 1.5;
-          margin-bottom: 40px;
-          max-width: 500px;
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 40px;
+        max-width: 500px;
       }
 
       .hero-sub strong {
-          color: var(--text);
-          font-weight: 500;
+        color: var(--text);
+        font-weight: 500;
       }
 
       .cmd-box {
-          display: flex;
-          align-items: stretch;
-          background: var(--bg-2);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 8px;
-          overflow: hidden;
-          margin-bottom: 28px;
-          max-width: 460px;
-          transition: border-color 0.2s;
+        display: flex;
+        align-items: stretch;
+        background: var(--bg-2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 28px;
+        max-width: 460px;
+        transition: border-color 0.2s;
       }
 
       .cmd-box:hover {
-          border-color: rgba(255, 225, 53, 0.2);
+        border-color: rgba(255, 225, 53, 0.2);
       }
 
       .cmd-prefix {
-          display: flex;
-          align-items: center;
-          padding: 0 14px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
-          border-right: 1px solid var(--border);
-          flex-shrink: 0;
-          user-select: none;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        border-right: 1px solid var(--border);
+        flex-shrink: 0;
+        user-select: none;
       }
 
       .cmd-text {
-          flex: 1;
-          padding: 13px 14px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--text);
-          white-space: nowrap;
-          user-select: all;
+        flex: 1;
+        padding: 13px 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        white-space: nowrap;
+        user-select: all;
       }
 
       .copy-btn {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          padding: 0 14px;
-          background: none;
-          border: none;
-          border-left: 1px solid var(--border);
-          color: var(--muted);
-          cursor: pointer;
-          font-family: var(--mono);
-          font-size: 12px;
-          transition: all 0.2s;
-          flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 14px;
+        background: none;
+        border: none;
+        border-left: 1px solid var(--border);
+        color: var(--muted);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 12px;
+        transition: all 0.2s;
+        flex-shrink: 0;
       }
 
       .copy-btn:hover {
-          color: var(--yellow);
-          background: var(--yellow-bg);
+        color: var(--yellow);
+        background: var(--yellow-bg);
       }
 
       .copy-btn:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: -2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: -2px;
       }
 
       .copy-btn.ok {
-          color: var(--green);
+        color: var(--green);
       }
 
       .pills {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-bottom: 32px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
       }
 
       .pill {
-          padding: 6px 12px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          font-size: 12px;
-          color: var(--muted);
+        padding: 6px 12px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--muted);
       }
 
       .pill b {
-          color: var(--text);
-          font-weight: 600;
+        color: var(--text);
+        font-weight: 600;
       }
 
       .hero-actions {
-          display: flex;
-          align-items: center;
-          gap: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
 
       .hero-link {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          color: var(--muted);
-          text-decoration: underline;
-          transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: underline;
+        transition: color 0.2s;
       }
 
       .hero-link:hover {
-          color: var(--text);
+        color: var(--text);
       }
 
       .hero-link:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .hero-link:visited {
-          color: var(--muted);
+        color: var(--muted);
       }
 
       .terminal {
-          background: #111111;
-          border: 1px solid rgba(255, 255, 255, 0.09);
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5),
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.5),
           0 40px 90px rgba(0, 0, 0, 0.7),
           0 0 80px rgba(255, 225, 53, 0.03);
-          position: relative;
+        position: relative;
       }
 
       .terminal::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: repeating-linear-gradient(
-                  0deg,
-                  transparent,
-                  transparent 3px,
-                  rgba(0, 0, 0, 0.04) 3px,
-                  rgba(0, 0, 0, 0.04) 4px
-          );
-          pointer-events: none;
-          border-radius: 8px;
-          z-index: 2;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 0, 0, 0.04) 3px,
+          rgba(0, 0, 0, 0.04) 4px
+        );
+        pointer-events: none;
+        border-radius: 8px;
+        z-index: 2;
       }
 
       .term-bar {
-          display: flex;
-          align-items: center;
-          gap: 7px;
-          padding: 11px 16px;
-          background: rgba(255, 255, 255, 0.025);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-          position: relative;
-          z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 16px;
+        background: rgba(255, 255, 255, 0.025);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1;
       }
 
       .tdot {
-          width: 11px;
-          height: 11px;
-          border-radius: 50%;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
       }
 
       .tdot.r {
-          background: #ff5f57;
+        background: #ff5f57;
       }
 
       .tdot.y {
-          background: #ffbd2e;
+        background: #ffbd2e;
       }
 
       .tdot.g {
-          background: #22c55e;
+        background: #22c55e;
       }
 
       .term-title {
-          flex: 1;
-          text-align: center;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.25);
-          margin-left: -37px;
+        flex: 1;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.25);
+        margin-left: -37px;
       }
 
       .term-body {
-          padding: 14px 16px;
-          font-family: var(--mono);
-          font-size: 12px;
-          line-height: 1.5;
-          height: 408px;
-          overflow-y: auto;
-          position: relative;
-          z-index: 1;
+        padding: 14px 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        height: 408px;
+        overflow-y: auto;
+        position: relative;
+        z-index: 1;
       }
 
       .term-body::-webkit-scrollbar {
-          width: 0;
+        width: 0;
       }
 
       .hero-h1 {
-          font-family: var(--display);
-          font-size: clamp(42px, 5.2vw, 70px);
-          font-weight: 800;
-          line-height: 1.15;
-          letter-spacing: -0.025em;
-          margin-bottom: 24px;
-          color: var(--text);
+        font-family: var(--display);
+        font-size: clamp(42px, 5.2vw, 70px);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 24px;
+        color: var(--text);
       }
 
       .hero-h1 em {
-          font-style: normal;
-          color: var(--yellow);
+        font-style: normal;
+        color: var(--yellow);
       }
 
       .hero-sub {
-          font-size: 16px;
-          color: var(--muted);
-          line-height: 1.5;
-          margin-bottom: 40px;
-          max-width: 500px;
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 40px;
+        max-width: 500px;
       }
 
       .hero-sub strong {
-          color: var(--text);
-          font-weight: 500;
+        color: var(--text);
+        font-weight: 500;
       }
 
       .cmd-box {
-          display: flex;
-          align-items: stretch;
-          background: var(--bg-2);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 8px;
-          overflow: hidden;
-          margin-bottom: 28px;
-          max-width: 460px;
-          transition: border-color 0.2s;
+        display: flex;
+        align-items: stretch;
+        background: var(--bg-2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 28px;
+        max-width: 460px;
+        transition: border-color 0.2s;
       }
 
       .cmd-box:hover {
-          border-color: rgba(255, 225, 53, 0.2);
+        border-color: rgba(255, 225, 53, 0.2);
       }
 
       .cmd-prefix {
-          display: flex;
-          align-items: center;
-          padding: 0 14px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
-          border-right: 1px solid var(--border);
-          flex-shrink: 0;
-          user-select: none;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        border-right: 1px solid var(--border);
+        flex-shrink: 0;
+        user-select: none;
       }
 
       .cmd-text {
-          flex: 1;
-          padding: 13px 14px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--text);
-          white-space: nowrap;
-          user-select: all;
+        flex: 1;
+        padding: 13px 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        white-space: nowrap;
+        user-select: all;
       }
 
       .copy-btn {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          padding: 0 14px;
-          background: none;
-          border: none;
-          border-left: 1px solid var(--border);
-          color: var(--muted);
-          cursor: pointer;
-          font-family: var(--mono);
-          font-size: 12px;
-          transition: all 0.2s;
-          flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 14px;
+        background: none;
+        border: none;
+        border-left: 1px solid var(--border);
+        color: var(--muted);
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 12px;
+        transition: all 0.2s;
+        flex-shrink: 0;
       }
 
       .copy-btn:hover {
-          color: var(--yellow);
-          background: var(--yellow-bg);
+        color: var(--yellow);
+        background: var(--yellow-bg);
       }
 
       .copy-btn:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: -2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: -2px;
       }
 
       .copy-btn.ok {
-          color: var(--green);
+        color: var(--green);
       }
 
       .pills {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-bottom: 32px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
       }
 
       .pill {
-          padding: 6px 12px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          font-size: 12px;
-          color: var(--muted);
+        padding: 6px 12px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--muted);
       }
 
       .pill b {
-          color: var(--text);
-          font-weight: 600;
+        color: var(--text);
+        font-weight: 600;
       }
 
       .hero-actions {
-          display: flex;
-          align-items: center;
-          gap: 20px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
       }
 
       .hero-link {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          color: var(--muted);
-          text-decoration: underline;
-          transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: underline;
+        transition: color 0.2s;
       }
 
       .hero-link:hover {
-          color: var(--text);
+        color: var(--text);
       }
 
       .hero-link:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .hero-link:visited {
-          color: var(--muted);
+        color: var(--muted);
       }
 
       .terminal {
-          background: #111111;
-          border: 1px solid rgba(255, 255, 255, 0.09);
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5),
+        background: #111111;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.5),
           0 40px 90px rgba(0, 0, 0, 0.7),
           0 0 80px rgba(255, 225, 53, 0.03);
-          position: relative;
+        position: relative;
       }
 
       .terminal::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: repeating-linear-gradient(
-                  0deg,
-                  transparent,
-                  transparent 3px,
-                  rgba(0, 0, 0, 0.04) 3px,
-                  rgba(0, 0, 0, 0.04) 4px
-          );
-          pointer-events: none;
-          border-radius: 8px;
-          z-index: 2;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(0, 0, 0, 0.04) 3px,
+          rgba(0, 0, 0, 0.04) 4px
+        );
+        pointer-events: none;
+        border-radius: 8px;
+        z-index: 2;
       }
 
       .term-bar {
-          display: flex;
-          align-items: center;
-          gap: 7px;
-          padding: 11px 16px;
-          background: rgba(255, 255, 255, 0.025);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-          position: relative;
-          z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 11px 16px;
+        background: rgba(255, 255, 255, 0.025);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1;
       }
 
       .tdot {
-          width: 11px;
-          height: 11px;
-          border-radius: 50%;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
       }
 
       .tdot.r {
-          background: #ff5f57;
+        background: #ff5f57;
       }
 
       .tdot.y {
-          background: #ffbd2e;
+        background: #ffbd2e;
       }
 
       .tdot.g {
-          background: #22c55e;
+        background: #22c55e;
       }
 
       .term-title {
-          flex: 1;
-          text-align: center;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.25);
-          margin-left: -37px;
+        flex: 1;
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.25);
+        margin-left: -37px;
       }
 
       .term-body {
-          padding: 14px 16px;
-          font-family: var(--mono);
-          font-size: 12px;
-          line-height: 1.5;
-          height: 408px;
-          overflow-y: auto;
-          position: relative;
-          z-index: 1;
+        padding: 14px 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        height: 408px;
+        overflow-y: auto;
+        position: relative;
+        z-index: 1;
       }
 
       .term-body::-webkit-scrollbar {
-          width: 0;
+        width: 0;
       }
 
       .tl {
-          display: block;
-          white-space: pre;
-          animation: tl-in 0.12s ease forwards;
+        display: block;
+        white-space: pre;
+        animation: tl-in 0.12s ease forwards;
       }
 
       @keyframes tl-in {
-          from {
-              opacity: 0;
-              transform: translateY(3px);
-          }
-          to {
-              opacity: 1;
-              transform: none;
-          }
+        from {
+          opacity: 0;
+          transform: translateY(3px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
       }
 
       .cursor {
-          display: inline-block;
-          width: 6px;
-          height: 12px;
-          background: var(--yellow);
-          vertical-align: middle;
-          animation: cur 1s step-end infinite;
+        display: inline-block;
+        width: 6px;
+        height: 12px;
+        background: var(--yellow);
+        vertical-align: middle;
+        animation: cur 1s step-end infinite;
       }
 
       @keyframes cur {
-          0%,
-          100% {
-              opacity: 1;
-          }
-          50% {
-              opacity: 0;
-          }
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
       }
 
       .wrap {
-          position: relative;
-          z-index: 1;
-          max-width: 1240px;
-          margin: 0 auto;
-          padding: 96px 48px;
+        position: relative;
+        z-index: 1;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 96px 48px;
       }
 
       hr.divider {
-          border: none;
-          border-top: 1px solid var(--border);
-          position: relative;
-          z-index: 1;
+        border: none;
+        border-top: 1px solid var(--border);
+        position: relative;
+        z-index: 1;
       }
 
       .sec-tag {
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--yellow);
-          margin-bottom: 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 14px;
       }
 
       .sec-h {
-          font-family: var(--display);
-          font-size: clamp(32px, 4vw, 48px);
-          font-weight: 800;
-          letter-spacing: -0.022em;
-          line-height: 1.25;
-          color: var(--text);
-          margin-bottom: 14px;
+        font-family: var(--display);
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 800;
+        letter-spacing: -0.022em;
+        line-height: 1.25;
+        color: var(--text);
+        margin-bottom: 14px;
       }
 
       .sec-sub {
-          font-size: 16px;
-          color: var(--muted);
-          max-width: 520px;
-          line-height: 1.5;
-          margin-bottom: 56px;
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.5;
+        margin-bottom: 56px;
       }
 
       .grid-9 {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1px;
-          background: var(--border);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .sec-tag {
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--yellow);
-          margin-bottom: 14px;
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--yellow);
+        margin-bottom: 14px;
       }
 
       .sec-h {
-          font-family: var(--display);
-          font-size: clamp(32px, 4vw, 48px);
-          font-weight: 800;
-          letter-spacing: -0.022em;
-          line-height: 1.25;
-          color: var(--text);
-          margin-bottom: 14px;
+        font-family: var(--display);
+        font-size: clamp(32px, 4vw, 48px);
+        font-weight: 800;
+        letter-spacing: -0.022em;
+        line-height: 1.25;
+        color: var(--text);
+        margin-bottom: 14px;
       }
 
       .sec-sub {
-          font-size: 16px;
-          color: var(--muted);
-          max-width: 520px;
-          line-height: 1.5;
-          margin-bottom: 56px;
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.5;
+        margin-bottom: 56px;
       }
 
       .grid-9 {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1px;
-          background: var(--border);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .gcard {
-          background: var(--bg-2);
-          padding: 26px 24px 22px;
-          transition: background 0.2s;
-          position: relative;
-          overflow: hidden;
+        background: var(--bg-2);
+        padding: 26px 24px 22px;
+        transition: background 0.2s;
+        position: relative;
+        overflow: hidden;
       }
 
       .gcard::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: var(--yellow);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--yellow);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .gcard:hover {
-          background: var(--bg-3);
+        background: var(--bg-3);
       }
 
       .gcard:hover::after {
-          transform: scaleX(1);
+        transform: scaleX(1);
       }
 
       .gicon {
-          width: 36px;
-          height: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--yellow-bg);
-          border: 1px solid rgba(255, 225, 53, 0.12);
-          border-radius: 8px;
-          margin-bottom: 14px;
-          color: var(--yellow);
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--yellow-bg);
+        border: 1px solid rgba(255, 225, 53, 0.12);
+        border-radius: 8px;
+        margin-bottom: 14px;
+        color: var(--yellow);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
       }
 
       .gicon {
-          width: 36px;
-          height: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--yellow-bg);
-          border: 1px solid rgba(255, 225, 53, 0.12);
-          border-radius: 8px;
-          margin-bottom: 14px;
-          color: var(--yellow);
-          font-family: var(--mono);
-          font-size: 12px;
-          font-weight: 700;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--yellow-bg);
+        border: 1px solid rgba(255, 225, 53, 0.12);
+        border-radius: 8px;
+        margin-bottom: 14px;
+        color: var(--yellow);
+        font-family: var(--mono);
+        font-size: 12px;
+        font-weight: 700;
       }
 
       .gname {
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--text);
-          margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
       }
 
       .gitems {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
 
       .gitems li {
-          font-size: 12px;
-          color: var(--dim);
-          display: flex;
-          gap: 8px;
-          line-height: 1.5;
+        font-size: 12px;
+        color: var(--dim);
+        display: flex;
+        gap: 8px;
+        line-height: 1.5;
       }
 
       .gitems li::before {
-          content: '·';
-          color: #333;
-          flex-shrink: 0;
+        content: '·';
+        color: #333;
+        flex-shrink: 0;
       }
 
       .pipeline {
-          display: flex;
-          align-items: flex-start;
-          gap: 0;
-          background: var(--bg-2);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .gitems {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
 
       .gitems li {
-          font-size: 12px;
-          color: var(--dim);
-          display: flex;
-          gap: 8px;
-          line-height: 1.5;
+        font-size: 12px;
+        color: var(--dim);
+        display: flex;
+        gap: 8px;
+        line-height: 1.5;
       }
 
       .gitems li::before {
-          content: '·';
-          color: #333;
-          flex-shrink: 0;
+        content: '·';
+        color: #333;
+        flex-shrink: 0;
       }
 
       .pipeline {
-          display: flex;
-          align-items: flex-start;
-          gap: 0;
-          background: var(--bg-2);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        gap: 0;
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .pstep {
-          flex: 1;
-          padding: 32px 24px;
-          position: relative;
-          border-right: 1px solid var(--border);
+        flex: 1;
+        padding: 32px 24px;
+        position: relative;
+        border-right: 1px solid var(--border);
       }
 
       .pstep:last-child {
-          border-right: none;
+        border-right: none;
       }
 
       .pstep-arrow {
-          position: absolute;
-          right: -10px;
-          top: 38px;
-          font-size: 16px;
-          color: var(--dim);
-          z-index: 1;
-          background: var(--bg-2);
-          padding: 2px;
+        position: absolute;
+        right: -10px;
+        top: 38px;
+        font-size: 16px;
+        color: var(--dim);
+        z-index: 1;
+        background: var(--bg-2);
+        padding: 2px;
       }
 
       .pnum {
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
-          letter-spacing: 0.06em;
-          margin-bottom: 10px;
-          font-weight: 600;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+        font-weight: 600;
       }
 
       .ptitle {
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--text);
-          margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
       }
 
       .pdesc {
-          font-size: 12px;
-          color: var(--muted);
-          line-height: 1.5;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
       }
 
       .ptag {
-          display: inline-block;
-          margin-top: 10px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          padding: 3px 8px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
+        display: inline-block;
+        margin-top: 10px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
       }
 
       .pnum {
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
-          letter-spacing: 0.06em;
-          margin-bottom: 10px;
-          font-weight: 600;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+        font-weight: 600;
       }
 
       .ptitle {
-          font-size: 14px;
-          font-weight: 600;
-          color: var(--text);
-          margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
       }
 
       .pdesc {
-          font-size: 12px;
-          color: var(--muted);
-          line-height: 1.5;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
       }
 
       .ptag {
-          display: inline-block;
-          margin-top: 10px;
-          background: var(--bg-3);
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          padding: 3px 8px;
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
+        display: inline-block;
+        margin-top: 10px;
+        background: var(--bg-3);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
       }
 
       .qs-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
       }
 
       .codeblock {
-          background: var(--bg-2);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .cb-head {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 16px;
-          background: rgba(255, 255, 255, 0.018);
-          border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.018);
+        border-bottom: 1px solid var(--border);
       }
 
       .cb-title {
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
       }
 
       .codeblock pre {
-          padding: 16px;
-          font-family: var(--mono);
-          font-size: 12px;
-          line-height: 1.5;
-          overflow-x: auto;
+        padding: 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        overflow-x: auto;
       }
 
       .codeblock pre::-webkit-scrollbar {
-          height: 0;
+        height: 0;
       }
 
       .cc {
-          color: var(--dim);
+        color: var(--dim);
       }
 
       .cx {
-          color: var(--muted);
+        color: var(--muted);
       }
 
       .cf {
-          color: var(--blue);
+        color: var(--blue);
       }
 
       .cu {
-          color: var(--yellow);
+        color: var(--yellow);
       }
 
       .codeblock {
-          background: var(--bg-2);
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          overflow: hidden;
+        background: var(--bg-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       .cb-head {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 16px;
-          background: rgba(255, 255, 255, 0.018);
-          border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.018);
+        border-bottom: 1px solid var(--border);
       }
 
       .cb-title {
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
       }
 
       .codeblock pre {
-          padding: 16px;
-          font-family: var(--mono);
-          font-size: 12px;
-          line-height: 1.5;
-          overflow-x: auto;
+        padding: 16px;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+        overflow-x: auto;
       }
 
       .codeblock pre::-webkit-scrollbar {
-          height: 0;
+        height: 0;
       }
 
       .cc {
-          color: var(--dim);
+        color: var(--dim);
       }
 
       .cx {
-          color: var(--muted);
+        color: var(--muted);
       }
 
       .cf {
-          color: var(--blue);
+        color: var(--blue);
       }
 
       .cu {
-          color: var(--yellow);
+        color: var(--yellow);
       }
 
       .cta-wrap {
-          position: relative;
-          z-index: 1;
-          text-align: center;
-          padding: 96px 48px;
-          background: var(--yellow-bg);
-          border-top: 1px solid rgba(255, 225, 53, 0.08);
-          border-bottom: 1px solid rgba(255, 225, 53, 0.08);
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 96px 48px;
+        background: var(--yellow-bg);
+        border-top: 1px solid rgba(255, 225, 53, 0.08);
+        border-bottom: 1px solid rgba(255, 225, 53, 0.08);
       }
 
       .cta-wrap .sec-h {
-          margin: 0 auto 14px;
+        margin: 0 auto 14px;
       }
 
       .cta-wrap .sec-sub {
-          margin: 0 auto 40px;
+        margin: 0 auto 40px;
       }
 
       .btn-row {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
       }
 
       .btn-y {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: var(--yellow);
-          color: #111111;
-          padding: 12px 24px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.15s;
-          border: none;
-          cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--yellow);
+        color: #111111;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.15s;
+        border: none;
+        cursor: pointer;
       }
 
       .btn-y:hover {
-          background: #f5f5f5;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(255, 225, 53, 0.2);
+        background: #f5f5f5;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(255, 225, 53, 0.2);
       }
 
       .btn-y:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .btn-g {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: transparent;
-          color: var(--muted);
-          padding: 12px 24px;
-          border-radius: 8px;
-          font-size: 14px;
-          font-weight: 500;
-          text-decoration: none;
-          border: 1px solid var(--border);
-          transition: all 0.15s;
-          cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        color: var(--muted);
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        transition: all 0.15s;
+        cursor: pointer;
       }
 
       .btn-g:hover {
-          color: var(--text);
-          border-color: rgba(255, 255, 255, 0.18);
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.18);
       }
 
       footer {
-          position: relative;
-          z-index: 1;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 32px 48px;
-          border-top: 1px solid var(--border);
-          max-width: 1240px;
-          margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px 48px;
+        border-top: 1px solid var(--border);
+        max-width: 1240px;
+        margin: 0 auto;
       }
 
       .foot-l {
-          font-family: var(--mono);
-          font-size: 12px;
-          color: var(--dim);
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--dim);
       }
 
       .foot-l a {
-          color: var(--muted);
-          text-decoration: underline;
-          transition: color 0.2s;
+        color: var(--muted);
+        text-decoration: underline;
+        transition: color 0.2s;
       }
 
       .foot-l a:hover {
-          color: var(--text);
+        color: var(--text);
       }
 
       .foot-l a:focus {
-          outline: 2px solid var(--yellow);
-          outline-offset: 2px;
+        outline: 2px solid var(--yellow);
+        outline-offset: 2px;
       }
 
       .foot-l a:visited {
-          color: var(--muted);
+        color: var(--muted);
       }
 
       .foot-r {
-          display: flex;
-          gap: 24px;
+        display: flex;
+        gap: 24px;
       }
 
       .foot-link {
-          font-size: 12px;
-          color: var(--muted);
-          text-decoration: underline;
-          transition: color 0.2s;
+        font-size: 12px;
+        color: var(--muted);
+        text-decoration: underline;
+        transition: color 0.2s;
       }
 
       .foot-link:hover {
-          color: var(--text);
+        color: var(--text);
       }
 
       @media (max-width: 1040px) {
-          .hero {
-              flex-direction: column;
-              align-items: flex-start;
-          }
+        .hero {
+          flex-direction: column;
+          align-items: flex-start;
+        }
 
-          .hero-right {
-              flex: none;
-              width: 100%;
-          }
+        .hero-right {
+          flex: none;
+          width: 100%;
+        }
 
-          .grid-9 {
-              grid-template-columns: repeat(2, 1fr);
-          }
+        .grid-9 {
+          grid-template-columns: repeat(2, 1fr);
+        }
 
-          .pipeline {
-              flex-wrap: wrap;
-          }
+        .pipeline {
+          flex-wrap: wrap;
+        }
 
-          .pstep {
-              flex: 0 0 calc(50% - 0.5px);
-              border-right: 1px solid var(--border);
-          }
+        .pstep {
+          flex: 0 0 calc(50% - 0.5px);
+          border-right: 1px solid var(--border);
+        }
 
-          .pstep-arrow {
-              display: none;
-          }
+        .pstep-arrow {
+          display: none;
+        }
       }
 
       @media (max-width: 700px) {
-          nav {
-              padding: 0 20px;
-          }
+        nav {
+          padding: 0 20px;
+        }
 
-          .hero,
-          .wrap,
-          footer,
-          .cta-wrap {
-              padding-left: 20px;
-              padding-right: 20px;
-          }
+        .hero,
+        .wrap,
+        footer,
+        .cta-wrap {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
 
-          .hero-h1 {
-              font-size: 38px;
-          }
+        .hero-h1 {
+          font-size: 38px;
+        }
 
-          .grid-9,
-          .qs-grid {
-              grid-template-columns: 1fr;
-          }
+        .grid-9,
+        .qs-grid {
+          grid-template-columns: 1fr;
+        }
 
-          .pipeline {
-              flex-direction: column;
-          }
+        .pipeline {
+          flex-direction: column;
+        }
 
-          .pstep {
-              flex: none;
-              width: 100%;
-              border-right: none;
-              border-bottom: 1px solid var(--border);
-          }
+        .pstep {
+          flex: none;
+          width: 100%;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
 
-          .pstep:last-child {
-              border-bottom: none;
-          }
+        .pstep:last-child {
+          border-bottom: none;
+        }
 
-          footer {
-              flex-direction: column;
-              gap: 16px;
-              align-items: flex-start;
-          }
+        footer {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
 
-          .nav-badge {
-              display: none;
-          }
+        .nav-badge {
+          display: none;
+        }
       }
-  </style>
+    </style>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPWLXW21TH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-DPWLXW21TH"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-    gtag('config', 'G-DPWLXW21TH');
-  </script>
-</head>
-<body>
-<nav>
-  <a href="#" class="nav-logo">design-auditor</a>
-  <div class="nav-right">
-    <a
-      href="https://www.npmjs.com/package/design-auditor"
-      class="nav-badge"
-      target="_blank"
-      rel="noopener"
-    >
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-        <rect width="12" height="12" rx="2" fill="#CB3837" />
-        <path d="M2 9V3h8v6H7V5H5v4H2z" fill="white" />
-      </svg>
-      <span id="npm-version">v1.0.0</span>
-    </a>
-    <a
-      href="https://github.com/PashaSchool/design-auditor"
-      class="nav-gh"
-      target="_blank"
-      rel="noopener"
-    >
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
-        <path
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-        />
-      </svg>
-      Star on GitHub
-    </a>
-  </div>
-</nav>
+      gtag('config', 'G-DPWLXW21TH');
+    </script>
+  </head>
+  <body>
+    <nav>
+      <a href="#" class="nav-logo">design-auditor</a>
+      <div class="nav-right">
+        <a
+          href="https://www.npmjs.com/package/design-auditor"
+          class="nav-badge"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <rect width="12" height="12" rx="2" fill="#CB3837" />
+            <path d="M2 9V3h8v6H7V5H5v4H2z" fill="white" />
+          </svg>
 
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-label">
-      <span class="live-dot"></span>
-      <span id="npm-version">v1.0.0</span> &nbsp;·&nbsp; Open Source
-      &nbsp;·&nbsp; MIT
-    </div>
-
-    <h1 class="hero-h1">
-      Your design system<br />has bugs.<br /><em>Find them.</em>
-    </h1>
-
-    <p class="hero-sub">
-      <strong>design-auditor</strong> crawls any website with a real browser
-      and checks typography, colors, spacing, and components against design
-      system best practices.
-    </p>
-
-    <div class="cmd-box">
-      <span class="cmd-prefix">$</span>
-      <span class="cmd-text">npx design-auditor https://yoursite.com</span>
-      <button class="copy-btn" id="copybtn" onclick="doCopy()">
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-          <rect
-            x="4"
-            y="4"
-            width="8"
-            height="8"
-            rx="1.5"
-            stroke="currentColor"
-            stroke-width="1.2"
-          />
-          <path
-            d="M2 10V2h8"
-            stroke="currentColor"
-            stroke-width="1.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        copy
-      </button>
-    </div>
-
-    <div class="pills">
-      <span class="pill"><b>9</b> modules</span>
-      <span class="pill"><b>30+</b> checks</span>
-      <span class="pill"><b>WCAG</b> AA/AAA</span>
-      <span class="pill"><b>0</b> config needed</span>
-      <span class="pill"><b>Node.js</b> 18+</span>
-    </div>
-
-    <div class="hero-actions">
-      <a
-        href="https://github.com/PashaSchool/design-auditor"
-        class="hero-link"
-        target="_blank"
-        rel="noopener"
-      >
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-          />
-        </svg>
-        View on GitHub
-      </a>
-      <a
-        href="https://www.npmjs.com/package/design-auditor"
-        class="hero-link"
-        target="_blank"
-        rel="noopener"
-      >
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M0 0v16h16V0H0zm13.5 13.5H9V5.5H7v8H2.5v-11h11v11z" />
-        </svg>
-        npm package
-      </a>
-    </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="terminal">
-      <div class="term-bar">
-        <div class="tdot r"></div>
-        <div class="tdot y"></div>
-        <div class="tdot g"></div>
-        <div class="term-title">bash — design-auditor</div>
+          <span id="npm-version">v1.0.0</span>
+        </a>
+        <a
+          href="https://github.com/PashaSchool/design-auditor"
+          class="nav-gh"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            />
+          </svg>
+          Star on GitHub
+        </a>
       </div>
-      <div class="term-body" id="tout"></div>
-    </div>
-  </div>
-</div>
+    </nav>
 
-<hr class="divider" />
-<section class="wrap" id="checks">
-  <div class="sec-tag">// what it checks</div>
-  <h2 class="sec-h">9 modules. 30+ checks.<br />Zero config.</h2>
-  <p class="sec-sub">
-    Every rule is grounded in established standards — WCAG 2.1, 8pt grid,
-    modular scale, delta-E color science, and 60-30-10 color theory.
-  </p>
+    <div class="hero">
+      <div class="hero-left">
+        <div class="hero-label">
+          <span class="live-dot"></span>
+          <span id="npm-version">v1.0.0</span> &nbsp;·&nbsp; Open Source
+          &nbsp;·&nbsp; MIT
+        </div>
 
-  <div class="grid-9">
-    <div class="gcard">
-      <div class="gicon">Aa</div>
-      <div class="gname">Typography</div>
-      <ul class="gitems">
-        <li>Font family count (max 3)</li>
-        <li>Unique sizes & modular scale</li>
-        <li>Line-height consistency</li>
-      </ul>
-    </div>
+        <h1 class="hero-h1">
+          Your design system<br />has bugs.<br /><em>Find them.</em>
+        </h1>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <circle cx="8" cy="8" r="3" fill="currentColor" />
-          <circle cx="8" cy="2" r="1.5" fill="currentColor" opacity=".35" />
-          <circle
-            cx="13.2"
-            cy="5"
-            r="1.5"
-            fill="currentColor"
-            opacity=".55"
-          />
-          <circle
-            cx="13.2"
-            cy="11"
-            r="1.5"
-            fill="currentColor"
-            opacity=".75"
-          />
-          <circle
-            cx="8"
-            cy="14"
-            r="1.5"
-            fill="currentColor"
-            opacity=".55"
-          />
-          <circle
-            cx="2.8"
-            cy="11"
-            r="1.5"
-            fill="currentColor"
-            opacity=".35"
-          />
-          <circle
-            cx="2.8"
-            cy="5"
-            r="1.5"
-            fill="currentColor"
-            opacity=".25"
-          />
-        </svg>
+        <p class="hero-sub">
+          <strong>design-auditor</strong> crawls any website with a real browser
+          and checks typography, colors, spacing, and components against design
+          system best practices.
+        </p>
+
+        <div class="cmd-box">
+          <span class="cmd-prefix">$</span>
+          <span class="cmd-text">npx design-auditor https://yoursite.com</span>
+          <button class="copy-btn" id="copybtn" onclick="doCopy()">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <rect
+                x="4"
+                y="4"
+                width="8"
+                height="8"
+                rx="1.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+              <path
+                d="M2 10V2h8"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            copy
+          </button>
+        </div>
+
+        <div class="pills">
+          <span class="pill"><b>9</b> modules</span>
+          <span class="pill"><b>30+</b> checks</span>
+          <span class="pill"><b>WCAG</b> AA/AAA</span>
+          <span class="pill"><b>0</b> config needed</span>
+          <span class="pill"><b>Node.js</b> 18+</span>
+        </div>
+
+        <div class="hero-actions">
+          <a
+            href="https://github.com/PashaSchool/design-auditor"
+            class="hero-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+            View on GitHub
+          </a>
+          <a
+            href="https://www.npmjs.com/package/design-auditor"
+            class="hero-link"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M0 0v16h16V0H0zm13.5 13.5H9V5.5H7v8H2.5v-11h11v11z" />
+            </svg>
+            npm package
+          </a>
+        </div>
       </div>
-      <div class="gname">Colors</div>
-      <ul class="gitems">
-        <li>Delta-E similar color clusters</li>
-        <li>WCAG AA & AAA contrast</li>
-        <li>CSS variable coverage</li>
-      </ul>
-    </div>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <rect
-            x="1"
-            y="1"
-            width="6"
-            height="6"
-            rx="1"
-            fill="currentColor"
-            opacity=".35"
-          />
-          <rect
-            x="9"
-            y="1"
-            width="6"
-            height="6"
-            rx="1"
-            fill="currentColor"
-            opacity=".65"
-          />
-          <rect
-            x="1"
-            y="9"
-            width="6"
-            height="6"
-            rx="1"
-            fill="currentColor"
-            opacity=".65"
-          />
-          <rect
-            x="9"
-            y="9"
-            width="6"
-            height="6"
-            rx="1"
-            fill="currentColor"
-          />
-        </svg>
+      <div class="hero-right">
+        <div class="terminal">
+          <div class="term-bar">
+            <div class="tdot r"></div>
+            <div class="tdot y"></div>
+            <div class="tdot g"></div>
+            <div class="term-title">bash — design-auditor</div>
+          </div>
+          <div class="term-body" id="tout"></div>
+        </div>
       </div>
-      <div class="gname">Spacing</div>
-      <ul class="gitems">
-        <li>4px / 8px grid detection</li>
-        <li>Margin & padding outliers</li>
-        <li>Vertical rhythm analysis</li>
-      </ul>
     </div>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <rect
-            x="1"
-            y="5"
-            width="14"
-            height="6"
-            rx="2"
-            stroke="currentColor"
-            stroke-width="1.4"
-          />
-          <rect
-            x="3"
-            y="7.5"
-            width="4"
-            height="1"
-            rx=".5"
-            fill="currentColor"
-          />
-        </svg>
+    <hr class="divider" />
+    <section class="wrap" id="checks">
+      <div class="sec-tag">// what it checks</div>
+      <h2 class="sec-h">9 modules. 30+ checks.<br />Zero config.</h2>
+      <p class="sec-sub">
+        Every rule is grounded in established standards — WCAG 2.1, 8pt grid,
+        modular scale, delta-E color science, and 60-30-10 color theory.
+      </p>
+
+      <div class="grid-9">
+        <div class="gcard">
+          <div class="gicon">Aa</div>
+          <div class="gname">Typography</div>
+          <ul class="gitems">
+            <li>Font family count (max 3)</li>
+            <li>Unique sizes & modular scale</li>
+            <li>Line-height consistency</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="3" fill="currentColor" />
+              <circle cx="8" cy="2" r="1.5" fill="currentColor" opacity=".35" />
+              <circle
+                cx="13.2"
+                cy="5"
+                r="1.5"
+                fill="currentColor"
+                opacity=".55"
+              />
+              <circle
+                cx="13.2"
+                cy="11"
+                r="1.5"
+                fill="currentColor"
+                opacity=".75"
+              />
+              <circle
+                cx="8"
+                cy="14"
+                r="1.5"
+                fill="currentColor"
+                opacity=".55"
+              />
+              <circle
+                cx="2.8"
+                cy="11"
+                r="1.5"
+                fill="currentColor"
+                opacity=".35"
+              />
+              <circle
+                cx="2.8"
+                cy="5"
+                r="1.5"
+                fill="currentColor"
+                opacity=".25"
+              />
+            </svg>
+          </div>
+          <div class="gname">Colors</div>
+          <ul class="gitems">
+            <li>Delta-E similar color clusters</li>
+            <li>WCAG AA & AAA contrast</li>
+            <li>CSS variable coverage</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <rect
+                x="1"
+                y="1"
+                width="6"
+                height="6"
+                rx="1"
+                fill="currentColor"
+                opacity=".35"
+              />
+              <rect
+                x="9"
+                y="1"
+                width="6"
+                height="6"
+                rx="1"
+                fill="currentColor"
+                opacity=".65"
+              />
+              <rect
+                x="1"
+                y="9"
+                width="6"
+                height="6"
+                rx="1"
+                fill="currentColor"
+                opacity=".65"
+              />
+              <rect
+                x="9"
+                y="9"
+                width="6"
+                height="6"
+                rx="1"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div class="gname">Spacing</div>
+          <ul class="gitems">
+            <li>4px / 8px grid detection</li>
+            <li>Margin & padding outliers</li>
+            <li>Vertical rhythm analysis</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <rect
+                x="1"
+                y="5"
+                width="14"
+                height="6"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.4"
+              />
+              <rect
+                x="3"
+                y="7.5"
+                width="4"
+                height="1"
+                rx=".5"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div class="gname">Components</div>
+          <ul class="gitems">
+            <li>Touch targets (≥ 44px)</li>
+            <li>:hover & :focus states</li>
+            <li>Border-radius & shadow system</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon" style="font-size: 12px">H₁</div>
+          <div class="gname">Headings</div>
+          <ul class="gitems">
+            <li>Single H1 per page</li>
+            <li>No skipped levels (H1→H2→H3)</li>
+            <li>Visual size hierarchy</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <rect
+                x="1"
+                y="2"
+                width="14"
+                height="12"
+                rx="2"
+                stroke="currentColor"
+                stroke-width="1.4"
+              />
+              <circle cx="5" cy="6" r="1" fill="currentColor" />
+              <path
+                d="M1 11l4-3 3 2.5 3-3 4 3"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="gname">Images</div>
+          <ul class="gitems">
+            <li>Alt text coverage (WCAG 1.1.1)</li>
+            <li>Aspect ratio consistency</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M6.5 9.5L9.5 6.5"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 12C2.9 10.9 2.9 9.1 4 8L5.5 6.5"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+              <path
+                d="M12 4C13.1 5.1 13.1 6.9 12 8L10.5 9.5"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="gname">Links</div>
+          <ul class="gitems">
+            <li>:focus & :visited states</li>
+            <li>WCAG 1.4.1 visual indicator</li>
+            <li>Color consistency</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <rect
+                x="1"
+                y="3"
+                width="9"
+                height="5.5"
+                rx="1.5"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+              <rect
+                x="10.5"
+                y="4"
+                width="4.5"
+                height="3.5"
+                rx="1"
+                stroke="currentColor"
+                stroke-width="1.2"
+              />
+              <rect
+                x="1"
+                y="11"
+                width="14"
+                height="1.5"
+                rx=".75"
+                fill="currentColor"
+                opacity=".3"
+              />
+            </svg>
+          </div>
+          <div class="gname">Breakpoints</div>
+          <ul class="gitems">
+            <li>Media query detection</li>
+            <li>Mobile-first strategy</li>
+            <li>Framework recognition (Tailwind…)</li>
+          </ul>
+        </div>
+
+        <div class="gcard">
+          <div class="gicon">↔</div>
+          <div class="gname">Reading Width</div>
+          <ul class="gitems">
+            <li>Line length (45–75 chars optimal)</li>
+            <li>Body text readability score</li>
+          </ul>
+        </div>
       </div>
-      <div class="gname">Components</div>
-      <ul class="gitems">
-        <li>Touch targets (≥ 44px)</li>
-        <li>:hover & :focus states</li>
-        <li>Border-radius & shadow system</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="gcard">
-      <div class="gicon" style="font-size: 12px">H₁</div>
-      <div class="gname">Headings</div>
-      <ul class="gitems">
-        <li>Single H1 per page</li>
-        <li>No skipped levels (H1→H2→H3)</li>
-        <li>Visual size hierarchy</li>
-      </ul>
-    </div>
+    <hr class="divider" />
+    <section class="wrap" id="how">
+      <div class="sec-tag">// how it works</div>
+      <h2 class="sec-h">Real browser.<br />Real computed styles.</h2>
+      <p class="sec-sub">
+        Unlike static CSS analysis, design-auditor uses Playwright — so it
+        catches JavaScript-injected styles, CSS custom properties resolved at
+        runtime, and third-party scripts.
+      </p>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <rect
-            x="1"
-            y="2"
-            width="14"
-            height="12"
-            rx="2"
-            stroke="currentColor"
-            stroke-width="1.4"
-          />
-          <circle cx="5" cy="6" r="1" fill="currentColor" />
-          <path
-            d="M1 11l4-3 3 2.5 3-3 4 3"
-            stroke="currentColor"
-            stroke-width="1.2"
-            stroke-linejoin="round"
-          />
-        </svg>
+      <div class="pipeline">
+        <div class="pstep">
+          <div class="pnum">01</div>
+          <div class="ptitle">Enter URL</div>
+          <div class="pdesc">
+            Any public or local dev server. No config, no API keys, no sign-up.
+          </div>
+          <div class="ptag">npx design-auditor</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">02</div>
+          <div class="ptitle">Browser opens</div>
+          <div class="pdesc">
+            Playwright launches Chromium, navigates to the page, and waits for
+            full render.
+          </div>
+          <div class="ptag">Chromium / Playwright</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">03</div>
+          <div class="ptitle">Styles extracted</div>
+          <div class="pdesc">
+            getComputedStyle() runs on every element. Actual rendered values —
+            no guessing.
+          </div>
+          <div class="ptag">getComputedStyle()</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">04</div>
+          <div class="ptitle">Rules applied</div>
+          <div class="pdesc">
+            9 modules run their checks. Each produces pass / warn / error
+            violations.
+          </div>
+          <div class="ptag">30+ rules</div>
+        </div>
+        <div class="pstep">
+          <div class="pnum">05</div>
+          <div class="ptitle">Report printed</div>
+          <div class="pdesc">
+            Score 0–100 per module. Grade A–F overall. Optional JSON for CI
+            pipelines.
+          </div>
+          <div class="ptag">Terminal + JSON</div>
+        </div>
       </div>
-      <div class="gname">Images</div>
-      <ul class="gitems">
-        <li>Alt text coverage (WCAG 1.1.1)</li>
-        <li>Aspect ratio consistency</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <path
-            d="M6.5 9.5L9.5 6.5"
-            stroke="currentColor"
-            stroke-width="1.4"
-            stroke-linecap="round"
+    <hr class="divider" />
+    <section class="wrap" id="security">
+      <div class="sec-tag">// security</div>
+      <h2 class="sec-h">Scanned & verified.</h2>
+      <p class="sec-sub">
+        All dependencies are continuously monitored for vulnerabilities using
+        Snyk. We take security seriously so you don't have to worry.
+      </p>
+
+      <div style="margin-top: 40px">
+        <a
+          href="https://snyk.io/test/github/PashaSchool/design-auditor"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="https://snyk.io/test/github/PashaSchool/design-auditor/badge.svg"
+            alt="Snyk Security Status"
+            style="max-height: 28px"
           />
-          <path
-            d="M4 12C2.9 10.9 2.9 9.1 4 8L5.5 6.5"
-            stroke="currentColor"
-            stroke-width="1.4"
-            stroke-linecap="round"
-          />
-          <path
-            d="M12 4C13.1 5.1 13.1 6.9 12 8L10.5 9.5"
-            stroke="currentColor"
-            stroke-width="1.4"
-            stroke-linecap="round"
-          />
-        </svg>
+        </a>
       </div>
-      <div class="gname">Links</div>
-      <ul class="gitems">
-        <li>:focus & :visited states</li>
-        <li>WCAG 1.4.1 visual indicator</li>
-        <li>Color consistency</li>
-      </ul>
-    </div>
+    </section>
 
-    <div class="gcard">
-      <div class="gicon">
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-          <rect
-            x="1"
-            y="3"
-            width="9"
-            height="5.5"
-            rx="1.5"
-            stroke="currentColor"
-            stroke-width="1.2"
-          />
-          <rect
-            x="10.5"
-            y="4"
-            width="4.5"
-            height="3.5"
-            rx="1"
-            stroke="currentColor"
-            stroke-width="1.2"
-          />
-          <rect
-            x="1"
-            y="11"
-            width="14"
-            height="1.5"
-            rx=".75"
-            fill="currentColor"
-            opacity=".3"
-          />
-        </svg>
-      </div>
-      <div class="gname">Breakpoints</div>
-      <ul class="gitems">
-        <li>Media query detection</li>
-        <li>Mobile-first strategy</li>
-        <li>Framework recognition (Tailwind…)</li>
-      </ul>
-    </div>
+    <hr class="divider" />
+    <section class="wrap" id="start">
+      <div class="sec-tag">// quick start</div>
+      <h2 class="sec-h">No install.<br />Just run it.</h2>
+      <p class="sec-sub">
+        Node.js 18+ required. Playwright browser downloads automatically on
+        first run.
+      </p>
 
-    <div class="gcard">
-      <div class="gicon">↔</div>
-      <div class="gname">Reading Width</div>
-      <ul class="gitems">
-        <li>Line length (45–75 chars optimal)</li>
-        <li>Body text readability score</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-<section class="wrap" id="how">
-  <div class="sec-tag">// how it works</div>
-  <h2 class="sec-h">Real browser.<br />Real computed styles.</h2>
-  <p class="sec-sub">
-    Unlike static CSS analysis, design-auditor uses Playwright — so it
-    catches JavaScript-injected styles, CSS custom properties resolved at
-    runtime, and third-party scripts.
-  </p>
-
-  <div class="pipeline">
-    <div class="pstep">
-      <div class="pnum">01</div>
-      <div class="ptitle">Enter URL</div>
-      <div class="pdesc">
-        Any public or local dev server. No config, no API keys, no sign-up.
-      </div>
-      <div class="ptag">npx design-auditor</div>
-    </div>
-    <div class="pstep">
-      <div class="pnum">02</div>
-      <div class="ptitle">Browser opens</div>
-      <div class="pdesc">
-        Playwright launches Chromium, navigates to the page, and waits for
-        full render.
-      </div>
-      <div class="ptag">Chromium / Playwright</div>
-    </div>
-    <div class="pstep">
-      <div class="pnum">03</div>
-      <div class="ptitle">Styles extracted</div>
-      <div class="pdesc">
-        getComputedStyle() runs on every element. Actual rendered values —
-        no guessing.
-      </div>
-      <div class="ptag">getComputedStyle()</div>
-    </div>
-    <div class="pstep">
-      <div class="pnum">04</div>
-      <div class="ptitle">Rules applied</div>
-      <div class="pdesc">
-        9 modules run their checks. Each produces pass / warn / error
-        violations.
-      </div>
-      <div class="ptag">30+ rules</div>
-    </div>
-    <div class="pstep">
-      <div class="pnum">05</div>
-      <div class="ptitle">Report printed</div>
-      <div class="pdesc">
-        Score 0–100 per module. Grade A–F overall. Optional JSON for CI
-        pipelines.
-      </div>
-      <div class="ptag">Terminal + JSON</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-<section class="wrap" id="security">
-  <div class="sec-tag">// security</div>
-  <h2 class="sec-h">Scanned & verified.</h2>
-  <p class="sec-sub">
-    All dependencies are continuously monitored for vulnerabilities using
-    Snyk. We take security seriously so you don't have to worry.
-  </p>
-
-  <div style="margin-top: 40px">
-    <a
-      href="https://snyk.io/test/github/PashaSchool/design-auditor"
-      target="_blank"
-      rel="noopener"
-    >
-      <img
-        src="https://snyk.io/test/github/PashaSchool/design-auditor/badge.svg"
-        alt="Snyk Security Status"
-        style="max-height: 28px"
-      />
-    </a>
-  </div>
-</section>
-
-<hr class="divider" />
-<section class="wrap" id="start">
-  <div class="sec-tag">// quick start</div>
-  <h2 class="sec-h">No install.<br />Just run it.</h2>
-  <p class="sec-sub">
-    Node.js 18+ required. Playwright browser downloads automatically on
-    first run.
-  </p>
-
-  <div class="qs-grid">
-    <div class="codeblock">
-      <div class="cb-head"><span class="cb-title">common usage</span></div>
-      <pre><span class="cc"># Any public website</span>
+      <div class="qs-grid">
+        <div class="codeblock">
+          <div class="cb-head"><span class="cb-title">common usage</span></div>
+          <pre><span class="cc"># Any public website</span>
 <span class="cx">npx design-auditor </span><span class="cu">https://yoursite.com</span>
 
 <span class="cc"># Save full report as JSON</span>
@@ -1953,309 +1960,311 @@
 
 <span class="cc"># Local dev server mode</span>
 <span class="cx">npx design-auditor </span><span class="cu">http://localhost:3000</span> <span class="cf">--local</span></pre>
-    </div>
-    <div class="codeblock">
-      <div class="cb-head">
-        <span class="cb-title">selective auditing</span>
-      </div>
-      <pre><span class="cc"># Run specific modules only</span>
+        </div>
+        <div class="codeblock">
+          <div class="cb-head">
+            <span class="cb-title">selective auditing</span>
+          </div>
+          <pre><span class="cc"># Run specific modules only</span>
 <span class="cx">npx design-auditor </span><span class="cu">https://yoursite.com</span> \
   <span class="cf">--only</span> typography,colors
 
 <span class="cc"># Install globally</span>
 <span class="cx">npm install -g design-auditor</span>
 <span class="cx">design-auditor </span><span class="cu">https://yoursite.com</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-wrap">
+      <div class="sec-tag">// ready?</div>
+      <h2 class="sec-h">Audit your site in 30 seconds.</h2>
+      <p class="sec-sub">
+        Free. Open source. No telemetry. No account. Just run it.
+      </p>
+      <div class="btn-row">
+        <a
+          href="https://github.com/PashaSchool/design-auditor"
+          class="btn-y"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            />
+          </svg>
+          Star on GitHub
+        </a>
+        <a
+          href="https://www.npmjs.com/package/design-auditor"
+          class="btn-g"
+          target="_blank"
+          rel="noopener"
+        >
+          View on npm →
+        </a>
+      </div>
     </div>
-  </div>
-</section>
 
-<div class="cta-wrap">
-  <div class="sec-tag">// ready?</div>
-  <h2 class="sec-h">Audit your site in 30 seconds.</h2>
-  <p class="sec-sub">
-    Free. Open source. No telemetry. No account. Just run it.
-  </p>
-  <div class="btn-row">
-    <a
-      href="https://github.com/PashaSchool/design-auditor"
-      class="btn-y"
-      target="_blank"
-      rel="noopener"
-    >
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
-        <path
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-        />
-      </svg>
-      Star on GitHub
-    </a>
-    <a
-      href="https://www.npmjs.com/package/design-auditor"
-      class="btn-g"
-      target="_blank"
-      rel="noopener"
-    >
-      View on npm →
-    </a>
-  </div>
-</div>
+    <footer>
+      <div class="foot-l">
+        Built by
+        <a href="https://github.com/PashaSchool" target="_blank" rel="noopener"
+          >Pavlo Kuzina</a
+        >
+        &nbsp;·&nbsp; MIT License
+      </div>
+      <div class="foot-r">
+        <a
+          href="https://github.com/PashaSchool/design-auditor"
+          class="foot-link"
+          >GitHub</a
+        >
+        <a href="https://www.npmjs.com/package/design-auditor" class="foot-link"
+          >npm</a
+        >
+        <a
+          href="https://github.com/PashaSchool/design-auditor/issues"
+          class="foot-link"
+          >Issues</a
+        >
+      </div>
+      <div class="foot-center">
+        <p style="margin-bottom: 8px; font-size: 14px">📖 Read more</p>
+        <a
+          href="https://dev.to/__aa5b04f75e3a/i-built-a-cli-that-catches-design-inconsistencies-like-lighthouse-but-for-your-design-system-nc7"
+          target="_blank"
+          rel="noopener"
+          class="foot-link"
+          style="font-size: 14px"
+          >I built a CLI that catches design inconsistencies — like Lighthouse,
+          but for your design system</a
+        >
+      </div>
+    </footer>
 
-<footer>
-  <div class="foot-l">
-    Built by
-    <a href="https://github.com/PashaSchool" target="_blank" rel="noopener"
-    >Pavlo Kuzina</a
-    >
-    &nbsp;·&nbsp; MIT License
-  </div>
-  <div class="foot-r">
-    <a
-      href="https://github.com/PashaSchool/design-auditor"
-      class="foot-link"
-    >GitHub</a
-    >
-    <a href="https://www.npmjs.com/package/design-auditor" class="foot-link"
-    >npm</a
-    >
-    <a
-      href="https://github.com/PashaSchool/design-auditor/issues"
-      class="foot-link"
-    >Issues</a
-    >
-  </div>
-  <div class="foot-center">
-    <p style="margin-bottom: 8px; font-size: 14px;">📖 Read more</p>
-    <a
-      href="https://dev.to/__aa5b04f75e3a/i-built-a-cli-that-catches-design-inconsistencies-like-lighthouse-but-for-your-design-system-nc7"
-      target="_blank"
-      rel="noopener"
-      class="foot-link"
-      style="font-size: 14px;"
-    >I built a CLI that catches design inconsistencies — like Lighthouse, but for your design system</a
-    >
-  </div>
-</footer>
+    <script>
+      const App = (() => {
+        const RESET_DELAY = 2000;
+        const NPM_REGISTRY_URL =
+          'https://registry.npmjs.org/design-auditor/latest';
+        const COPY_TEXT = 'npx design-auditor https://yoursite.com';
 
-<script>
-  const App = (() => {
-    const RESET_DELAY = 2000;
-    const NPM_REGISTRY_URL = 'https://registry.npmjs.org/design-auditor/latest';
-    const COPY_TEXT = 'npx design-auditor https://yoursite.com';
+        const icons = {
+          check: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+          copy: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        };
 
-    const icons = {
-      check: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-      copy: `<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-    };
+        const versionModule = (() => {
+          const updateVersion = async () => {
+            try {
+              const response = await fetch(NPM_REGISTRY_URL);
+              const data = await response.json();
+              const version = `v${data.version}`;
+              document.querySelectorAll('#npm-version').forEach((el) => {
+                el.textContent = version;
+              });
+            } catch (error) {
+              console.log('npm version check failed', error);
+            }
+          };
 
-    const versionModule = (() => {
-      const updateVersion = async () => {
-        try {
-          const response = await fetch(NPM_REGISTRY_URL);
-          const data = await response.json();
-          const version = `v${data.version}`;
-          document.querySelectorAll('#npm-version').forEach((el) => {
-            el.textContent = version;
-          });
-        } catch (error) {
-          console.log('npm version check failed', error);
-        }
-      };
+          const init = () => {
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', updateVersion);
+            } else {
+              updateVersion();
+            }
+          };
 
-      const init = () => {
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', updateVersion);
-        } else {
-          updateVersion();
-        }
-      };
+          return { init };
+        })();
 
-      return { init };
-    })();
+        const clipboardModule = (() => {
+          const copyButton = document.getElementById('copybtn');
 
-    const clipboardModule = (() => {
-      const copyButton = document.getElementById('copybtn');
+          const showSuccess = () => {
+            copyButton.classList.add('ok');
+            copyButton.innerHTML = `${icons.check} copied!`;
+          };
 
-      const showSuccess = () => {
-        copyButton.classList.add('ok');
-        copyButton.innerHTML = `${icons.check} copied!`;
-      };
+          const resetButton = () => {
+            copyButton.classList.remove('ok');
+            copyButton.innerHTML = `${icons.copy} copy`;
+          };
 
-      const resetButton = () => {
-        copyButton.classList.remove('ok');
-        copyButton.innerHTML = `${icons.copy} copy`;
-      };
+          const handleCopy = () => {
+            navigator.clipboard.writeText(COPY_TEXT).then(() => {
+              showSuccess();
+              setTimeout(resetButton, RESET_DELAY);
+            });
+          };
 
-      const handleCopy = () => {
-        navigator.clipboard.writeText(COPY_TEXT).then(() => {
-          showSuccess();
-          setTimeout(resetButton, RESET_DELAY);
-        });
-      };
+          if (copyButton) {
+            copyButton.addEventListener('click', handleCopy);
+          }
 
-      if (copyButton) {
-        copyButton.addEventListener('click', handleCopy);
-      }
+          return { copy: handleCopy };
+        })();
 
-      return { copy: handleCopy };
-    })();
+        const terminalModule = (() => {
+          const INITIAL_DELAY = 600;
+          const CURSOR_DELAY = 200;
+          const LOOP_DELAY = 3800;
+          const CONTAINER_ID = 'tout';
 
-    const terminalModule = (() => {
-      const INITIAL_DELAY = 600;
-      const CURSOR_DELAY = 200;
-      const LOOP_DELAY = 3800;
-      const CONTAINER_ID = 'tout';
+          const createColorSwatch = (hex) =>
+            `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
 
-      const createColorSwatch = (hex) =>
-        `<span style="display:inline-block;background:${hex};width:11px;height:11px;vertical-align:middle;border-radius:2px;margin:0 2px"></span>`;
+          const lines = [
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 0,
+            },
+            {
+              h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
+              d: 80,
+            },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 200 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
+              d: 300,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${createColorSwatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${createColorSwatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 140 },
+            {
+              h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
+              d: 180,
+            },
+            { h: `&nbsp;`, d: 60 },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
+              d: 80,
+            },
+            {
+              h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
+              d: 80,
+            },
+            { h: `&nbsp;`, d: 200 },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 100,
+            },
+            {
+              h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#22c55e">B</b>  <span style="color:#555555">·</span>  <span style="color:#22c55e">Good</span>`,
+              d: 80,
+            },
+            {
+              h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
+              d: 80,
+            },
+          ];
 
-      const lines = [
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 0,
-        },
-        {
-          h: `  <b style="color:#f0f0f0">DESIGN AUDITOR</b>                         <span style="color:#999">pashaschool.github.io</span>`,
-          d: 80,
-        },
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 80,
-        },
-        { h: `&nbsp;`, d: 200 },
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">TYPOGRAPHY </b><span style="color:#555555">───────────────────────────</span> <span style="color:#FFE135">██████</span><span style="color:#1f1f1f">░░░░░░</span>   <span style="color:#FFE135">50</span> <span style="color:#555555">──</span>`,
-          d: 300,
-        },
-        { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#FF3B3B">✖</span>  <span style="color:#FF3B3B">11 unique line-heights — recommendation: max 4–6</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">10 unique font sizes — rec. 6–8</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Font families: 2 — OK</span>`,
-          d: 80,
-        },
-        { h: `&nbsp;`, d: 140 },
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COLORS </b><span style="color:#555555">─────────────────────────────</span> <span style="color:#FFE135">███████████</span><span style="color:#1f1f1f">░</span>   <span style="color:#FFE135">86</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
-        { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#FFE135">◆</span>  <span style="color:#FFE135">WCAG AA fail: <span style="background:#ffffff;color:#FF3B3B;padding:0 3px;border-radius:2px">#ffffff</span> on <span style="background:#FF3B3B;color:#fff;padding:0 3px;border-radius:2px">#FF3B3B</span> (3.53:1)</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Unique colors: 11 — OK</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Primary:   ${createColorSwatch('#FFE135')} <span style="color:#999">#ffe135</span>  (11 uses)</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Secondary: ${createColorSwatch('#0057FF')} <span style="color:#999">#0057ff</span>  (9 uses)</span>`,
-          d: 80,
-        },
-        { h: `&nbsp;`, d: 140 },
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">COMPONENTS </b><span style="color:#555555">─────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
-        { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Touch targets: all buttons ≥ 44px</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Interactive states: :hover and :focus present</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Border-radius: 3 unique values — OK</span>`,
-          d: 80,
-        },
-        { h: `&nbsp;`, d: 140 },
-        {
-          h: `<span style="color:#555555">── </span><b style="color:#f0f0f0">HEADINGS </b><span style="color:#555555">───────────────────────────</span> <span style="color:#22c55e">████████████</span>   <span style="color:#22c55e">100</span> <span style="color:#555555">──</span>`,
-          d: 180,
-        },
-        { h: `&nbsp;`, d: 60 },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">H1: one on page — "Pavlo Kuzina"</span>`,
-          d: 80,
-        },
-        {
-          h: `    <span style="color:#22c55e">✔</span>  <span style="color:#999">Heading hierarchy has no skipped levels</span>`,
-          d: 80,
-        },
-        { h: `&nbsp;`, d: 200 },
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 100,
-        },
-        {
-          h: `  <b style="color:#f0f0f0">Overall</b>  <b style="color:#FFE135">79</b><span style="color:#555555">/100</span>    <b style="color:#f0f0f0">Grade</b>  <b style="color:#22c55e">B</b>  <span style="color:#555555">·</span>  <span style="color:#22c55e">Good</span>`,
-          d: 80,
-        },
-        {
-          h: `<span style="color:#555555">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>`,
-          d: 80,
-        },
-      ];
+          const renderLine = (el, line, delay) => {
+            const row = document.createElement('div');
+            row.className = 'tl';
+            row.innerHTML = line.h;
+            setTimeout(() => {
+              el.appendChild(row);
+              el.scrollTop = el.scrollHeight;
+            }, delay);
+          };
 
-      const renderLine = (el, line, delay) => {
-        const row = document.createElement('div');
-        row.className = 'tl';
-        row.innerHTML = line.h;
-        setTimeout(() => {
-          el.appendChild(row);
-          el.scrollTop = el.scrollHeight;
-        }, delay);
-      };
+          const renderCursor = (el, delay) => {
+            const cur = document.createElement('div');
+            cur.className = 'tl';
+            cur.innerHTML = '  <span class="cursor"></span>';
+            setTimeout(() => {
+              el.appendChild(cur);
+            }, delay);
+          };
 
-      const renderCursor = (el, delay) => {
-        const cur = document.createElement('div');
-        cur.className = 'tl';
-        cur.innerHTML = '  <span class="cursor"></span>';
-        setTimeout(() => {
-          el.appendChild(cur);
-        }, delay);
-      };
+          const run = () => {
+            const container = document.getElementById(CONTAINER_ID);
+            if (!container) return;
 
-      const run = () => {
-        const container = document.getElementById(CONTAINER_ID);
-        if (!container) return;
+            container.innerHTML = '';
+            let delay = INITIAL_DELAY;
 
-        container.innerHTML = '';
-        let delay = INITIAL_DELAY;
+            lines.forEach((line) => {
+              delay += line.d;
+              renderLine(container, line, delay);
+            });
 
-        lines.forEach((line) => {
-          delay += line.d;
-          renderLine(container, line, delay);
-        });
+            delay += CURSOR_DELAY;
+            renderCursor(container, delay);
+            setTimeout(run, delay + LOOP_DELAY);
+          };
 
-        delay += CURSOR_DELAY;
-        renderCursor(container, delay);
-        setTimeout(run, delay + LOOP_DELAY);
-      };
+          return { init: run };
+        })();
 
-      return { init: run };
-    })();
+        return {
+          init() {
+            versionModule.init();
+            terminalModule.init();
+          },
+        };
+      })();
 
-    return {
-      init() {
-        versionModule.init();
-        terminalModule.init();
-      },
-    };
-  })();
-
-  App.init();
-</script>
-</body>
+      App.init();
+    </script>
+  </body>
 </html>

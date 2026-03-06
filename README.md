@@ -13,6 +13,8 @@
 **Catch design inconsistencies before your users do.**
 
 [![npm version](https://img.shields.io/npm/v/design-auditor?color=6366f1&style=flat-square)](https://www.npmjs.com/package/design-auditor)
+[![npm downloads](https://img.shields.io/npm/dm/design-auditor?color=6366f1&style=flat-square)](https://www.npmjs.com/package/design-auditor)
+[![CI](https://img.shields.io/github/actions/workflow/status/PashaSchool/design-auditor/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/PashaSchool/design-auditor/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/design-auditor?color=6366f1&style=flat-square)](LICENSE)
 [![snyk](https://snyk.io/test/github/PashaSchool/design-auditor/badge.svg)](https://snyk.io/test/github/PashaSchool/design-auditor)
 [![playwright](https://img.shields.io/badge/powered%20by-Playwright-45ba4b?style=flat-square)](https://playwright.dev)
