@@ -10,7 +10,8 @@
     "dev": "tsx src/index.ts",
     "build": "tsc && tsc-alias",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "vitest run"
   },
   "keywords": [
     "design-system",
@@ -53,7 +54,8 @@
     "prettier": "^3.8.1",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.18"
   },
   "files": [
     "dist",
