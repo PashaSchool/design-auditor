@@ -36,11 +36,11 @@ npx design-auditor https://stripe.com
 
 Think of it as **Lighthouse, but for your design system** — not performance, not SEO, but the visual coherence of your product.
 
-| Tool | What it checks |
-|------|---------------|
-| **Lighthouse** | Performance, SEO, best practices |
-| **axe / WAVE** | Accessibility compliance |
-| **Stylelint** | CSS source code linting |
+| Tool               | What it checks                                            |
+| ------------------ | --------------------------------------------------------- |
+| **Lighthouse**     | Performance, SEO, best practices                          |
+| **axe / WAVE**     | Accessibility compliance                                  |
+| **Stylelint**      | CSS source code linting                                   |
 | **design-auditor** | **Design system consistency** — the gap no one else fills |
 
 ---
@@ -91,13 +91,13 @@ Every audit produces a **weighted score from 0 to 100** with a letter grade:
 └──────────────────────────────────────────────────┘
 ```
 
-| Grade | Score | Meaning |
-|-------|-------|---------|
+| Grade | Score  | Meaning                              |
+| ----- | ------ | ------------------------------------ |
 | **A** | 90-100 | Excellent — consistent design system |
-| **B** | 75-89 | Good — minor inconsistencies |
-| **C** | 60-74 | Needs Work — visible design drift |
-| **D** | 40-59 | Poor — significant inconsistencies |
-| **F** | 0-39 | Critical — no design system detected |
+| **B** | 75-89  | Good — minor inconsistencies         |
+| **C** | 60-74  | Needs Work — visible design drift    |
+| **D** | 40-59  | Poor — significant inconsistencies   |
+| **F** | 0-39   | Critical — no design system detected |
 
 Use `--save-report` to track your score over time and catch design drift in CI.
 
